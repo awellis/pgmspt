@@ -1,36 +1,39 @@
 ---
-title             : "The title"
-shorttitle        : "Title"
+title             : "A Computational Perspective On Spatial Perspective Transformations: From Sensory Inference To Imagined Self-motion"
+shorttitle        : "A Computational Perspective"
 
 author: 
-  - name          : "First Author"
+  - name          : "Andrew W. Ellis"
     affiliation   : "1"
     corresponding : yes    # Define only one corresponding author
-    address       : "Postal address"
-    email         : "my@email.com"
-  - name          : "Ernst-August Doelle"
-    affiliation   : "1,2"
+    address       : "Fabrikstrasse 8, 3012 Bern, Switzerland"
+    email         : "andrew.ellis@psy.unibe.ch"
+  - name          : "Fred W. Mast"
+    affiliation   : "1"
 
 affiliation:
   - id            : "1"
-    institution   : "Wilhelm-Wundt-University"
-  - id            : "2"
-    institution   : "Konstanz Business School"
+    institution   : "Department of Psychology, University of Bern"
+
 
 author_note: >
-  Complete departmental affiliations for each author (note the indentation, if you start a new paragraph).
+  Andrew W. Ellis, Fred W. Mast, Department of Psychology.
+  
+  AE and FM planned and conducted the research; AE and FM analyzed the data and wrote the manuscript.
+  
+  Raw data and analysis scripts are available at https://osf.io/u26mq.
 
-  Enter author note here.
 
 abstract: >
-  Enter abstract here (note the indentation, if you start a new paragraph).
-  
-keywords          : "keywords"
+    Recent research showed the involvement of vestibular information in cognitive processes. We provide a computational framework for vestibular cognition and thereby focus on perspective transformations, which require a simulated rotation of the self. We explore how the ability to model the effects of body rotation using vestibular input might enable the ability to imagine body rotations. We approach this problem by considering a simple agent endowed with a complex statistical model of the hidden causes of its sensory input. We explain how this statistical model enables the agent to predict its sensory input and hidden sensory variables. Based on a probabilistic graphical model, we formalize qualitative concepts of mental simulation. Predicting the sensory input is key to understanding imagined rotations. Mental imagery goes beyond prediction, rather, it involves the use of counterfactual queries in a probabilistic model. 
+
+
+keywords          : Probabilistic graphical models, Particle filter, Embodied cognition, Vestibular cognition, Spatial perspective taking, Mental imagery
 wordcount         : "X"
 
-bibliography      : ["r-references.bib"]
+bibliography      : ["references.bib"]
 
-figsintext        : no
+figsintext        : yes
 figurelist        : no
 tablelist         : no
 footnotelist      : no
@@ -38,25 +41,14 @@ lineno            : yes
 
 lang              : "english"
 class             : "man"
-output            : papaja::apa6_word
+# output            : papaja::apa6_word
+output            : papaja::apa6_pdf
 ---
 
 ```{r message = FALSE, warning = FALSE}
 library("papaja")
 ```
 
-
-# Methods
-We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
-
-## Participants
-
-## Material
-
-## Procedure
-
-## Data analysis
-We used `r cite_r("r-references.bib")` for all our analyses.
 
 
 # Results
