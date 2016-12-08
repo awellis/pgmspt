@@ -1,5 +1,6 @@
 ---
 title             : "A Computational Perspective On Spatial Perspective Transformations: From Sensory Inference To Imagined Self-motion"
+# title             : "Probabilistic Computations Underlying Simulated Self-Rotations"
 shorttitle        : "A Computational Perspective"
 
 author: 
@@ -45,22 +46,129 @@ class             : "man"
 output            : papaja::apa6_pdf
 ---
 
-```{r message = FALSE, warning = FALSE}
+```{r preliminary, message = FALSE, warning = FALSE}
 library("papaja")
+library(pander)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(mvtnorm)
+library(ggthemes)
+
+source('~/thesis/papers/pgm-spt/R/utils.R')
+source('~/thesis/papers/pgm-spt/R/2d-particle-filter.R')
+source('~/thesis/papers/pgm-spt/simulations/rbiips-model.R')
+
+knitr::opts_chunk$set(cache = TRUE,
+                      fig.width = 12, fig.height = 8,
+                      dpi = 600, fig.path = "../generated-figures/",
+                      dev=c('pdf', 'png', 'cairo_ps'))
 ```
 
 
 
-# Results
+# Preliminary
+
+generate some data:
+
+```{r generate-data-1, echo=FALSE, message=FALSE, warning=FALSE}
+dt <- 0.1
+motiondata <- generate_data(T = 2, amplitude = 20, sensor_sd = 2.0)
+plot_trajectories(motiondata = motiondata)
+```
+
+
+
+
+
+# Introduction
+
+## Notes
+We need to simulate the behaviour of a complex dynamical system.
+
+Few (if any) attempts have been made to connect higher-level vestibular cognition to the lower-level computations performed in the service of sensory inference. THis is rather surprising, since the vestibular system has some very interesting properties with direct relevance for cognitive systems, and it is comparatively well understood in terms of its dynamics and the sensory afferent signals
+
+# Simulating a dynamical system
+A dynamical system can be described by a set of differential equations; these differential equation relate the first order derivatives of the state to the state variables.
+
+Actually, the brain must solve __stochastic differential equations__.
+
+Write equations for position, velocity and acceleration. __Important:__ $\omega$, the rate of change (of angular position $\theta$), depends on the current position $\theta$. 
+
+These are the _forward kinematic equations_ (that take us from inputs (acceleration) to velocity and position). Given the kinematic equations, we can simulate entire trajectories through space.
+
+Why simulate? Movement through 3 dimensional space is complex (non-linear). It is 'easier' to simulate this kind of system using knowledge that is already available.
+ 
+Simulatinf a movement through space is akin to planning a movement before it is carried out. This is a very challenging problem
+
+> Euler’s method is probably the most simple and popular method for solving initial value problems for ODEs.
+
+
+# Vestibular Cognition
+Two tasks thought to constitute vestibular cognition are : SPT and imagined self-motion. We show that both processes are thought to involve a simulated rotation about the body's vertical (yaw) axis. Describe both processes and show figure. Both can be interpreted as mentally simulated rotations. We refer to both as simulation: in this case we show that the simulation consists of simulating a dynamical system using a generative model. Simulation can also be thought of as a kind of internal 'replay' [@Takac:2012jc] or working memory representation
+
+![SPT and imagined self-motion involve common computations](diagrams/fig-1-common-process.pdf)
+But what are these computations? The brain could either solve the equation for the final position, or could run foward simulation of the dynamic system.
+
+## Spatial Perspective Taking
+
+cite Grabherr vestibular patients paper
+
+## Imagined Self-Motion
+
+We investigate one specific type of head movement, a rotation of the head about the yaw axis, and discuss this in the context of the probabilistic computations that are performed when the goal is to:
+
+1) infer motion caused by external events
+2) infer the consequences of one's own actions.
+
+## Common Computations
+
+
+Head direction cells are thought to integrate signals of vestibular origin to maintain a signal of cumulative rotation (reviewed in @Taube:2007fk and are found in many brain areas, including the postsubiculum, retrosplenial cortex, thalamus, lateral mammillary nucleus, dorsal tegmental nucleus, striatum and entorhinal cortex [@Cullen:2014gx]. This may be necessary in order to mentally simulate being in another position, i.e. the brain apparently needs to simulate the n-step dynamics of its motion through space. Why is this? Because vestibular connections make a major contribution to spatial orientation; information about the position in space obtained through the vestibular sensory system is computed by integrating velocity over time.
+
+The computations performed for SPT require a generative model. Further, we can identify two main topics:
+
+1) the probabilistic computations performed during sensory inference
+2) the computations carried out by the brain in order to distinguish between sensory consequences of voluntary actions and externally produced actions. The cerebellum is thought to be the site of a forward model that predicts the sensory consequences of self-generated action [@Brooks:2013cf], which is then 'compared' to the actual sensory stimulation in order to compute a prediction error.
+
+
+> The brain has a generative model for simulation. Where does this model come from? We show that this is precisely what the brain uses in order to perform sensory inference.
+
+> Tasks performed by a moving agent: sense our movements in space. This is made challenging by the fact the we move, and our sensory data may be due to our own movements, or externally applied forces. THese need to be distinguished, as they have to be handled differently. Exteranlly applied forces need to be compensated for, whereas this is often not the case for volitional movements.
+
+# Vestibular System
+
+# Dynamic Probabilistic Model
+The generative model consists of several components (Process model, observation model), some of which (process model) are re-used for simulation, while the observation model is not needed for simulation. It might however, provide a useful function (play a role) in simulation, by indicating whether the data are fit well or not (usually they are not).
+
+# Inference
+
+this is a reference to \autoref{figurelabel}
+
+![This is the caption \label{figurelabel}](diagrams/figure-particle-filter-explained.pdf)
+# Model description
+
+
+# Simulations
+
+We simulate various scenarios of model mis-spefication
+
+```{r}
+library(tables, quietly = TRUE)
+tab <- tabular( (Species + 1) ~ (n=1) + Format(digits=2)*
+         (Sepal.Length + Sepal.Width)*(mean + sd), data=iris )
+pander(tab)
+```
 
 # Discussion
 
+A simple model for perceptual decision-making: evidence accumulation via log-likelihood difference test.
 
 \newpage
 
 # References
 ```{r create_r-references}
-r_refs(file = "r-references.bib")
+# r_refs(file = "r-references.bib")
 ```
 
 \setlength{\parindent}{-0.5in}
