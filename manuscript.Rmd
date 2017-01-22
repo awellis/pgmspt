@@ -1,59 +1,71 @@
 ---
-title             : "A Computational Perspective On Spatial Perspective Transformations: From Sensory Inference To Imagined Self-motion"
+title             : "Vestibular Contributions to Spatial Perspective Transformations: From Sensory Inference To Imagined Self-Motion"
+# title             : "A Computational Perspective On Spatial Perspective Transformations: From Sensory Inference To Imagined Self-motion"
 # title             : "Probabilistic Computations Underlying Simulated Self-Rotations"
-shorttitle        : "A Computational Perspective"
+# title: Probabilistic Computations Underlying Vestibular Cognition
+shorttitle        : "Vestibular Contributions to SPT"
 
-author: 
+author:
   - name          : "Andrew W. Ellis"
-    affiliation   : "1"
+    # affiliation   : "1"
     corresponding : yes    # Define only one corresponding author
     address       : "Fabrikstrasse 8, 3012 Bern, Switzerland"
     email         : "andrew.ellis@psy.unibe.ch"
   - name          : "Fred W. Mast"
-    affiliation   : "1"
+    # affiliation   : "1"
 
 affiliation:
-  - id            : "1"
-    institution   : "Department of Psychology, University of Bern"
+  # - id            : "1"
+  - institution   : "Department of Psychology, University of Bern, Switzerland"
 
 
 author_note: >
-  Andrew W. Ellis, Fred W. Mast, Department of Psychology.
-  
+  Andrew W. Ellis & Fred W. Mast, Department of Psychology.
+
   AE and FM planned and conducted the research; AE and FM analyzed the data and wrote the manuscript.
-  
-  Raw data and analysis scripts are available at https://osf.io/u26mq.
+
+  Code for simulations is available at https://osf.io/u26mq.
 
 
 abstract: >
-    Recent research showed the involvement of vestibular information in cognitive processes. We provide a computational framework for vestibular cognition and thereby focus on perspective transformations, which require a simulated rotation of the self. We explore how the ability to model the effects of body rotation using vestibular input might enable the ability to imagine body rotations. We approach this problem by considering a simple agent endowed with a complex statistical model of the hidden causes of its sensory input. We explain how this statistical model enables the agent to predict its sensory input and hidden sensory variables. Based on a probabilistic graphical model, we formalize qualitative concepts of mental simulation. Predicting the sensory input is key to understanding imagined rotations. Mental imagery goes beyond prediction, rather, it involves the use of counterfactual queries in a probabilistic model. 
+    Recent research has indicated that the vestibular network is involved in cognitive processes. However, the nature of this involvement remains unclear. We provide a computational framework for vestibular cognition and discuss this in the context of perspective transformations, which require a simulated rotation of the self. We explore how the ability to model the effects of body rotation using vestibular input might enable the ability to imagine body rotations. We approach this problem by considering a simple agent endowed with a complex statistical model of the hidden causes of its sensory input. We explain how this statistical model enables the agent to predict its sensory input and hidden sensory variables. Based on a probabilistic graphical model, we formalize qualitative concepts of mental simulation. Predicting the sensory input is key to understanding imagined rotations. Mental imagery goes beyond prediction, rather, it involves the use of counterfactual queries in a probabilistic model.
 
 
-keywords          : Probabilistic graphical models, Particle filter, Embodied cognition, Vestibular cognition, Spatial perspective taking, Mental imagery
-wordcount         : "X"
+keywords: probabilistic graphical models, particle filter, embodied cognition, vestibular cognition, spatial perspective taking, mental imagery
+wordcount: "X"
 
-bibliography      : ["references.bib"]
+bibliography: "bibliography.bib"
 
 figsintext        : yes
-figurelist        : no
-tablelist         : no
+figurelist        : yes
+tablelist         : yes
 footnotelist      : no
 lineno            : yes
+citeproc          : yes
+csl               : apa.csl
 
 lang              : "english"
 class             : "man"
 # output            : papaja::apa6_word
-output            : papaja::apa6_pdf
+output:
+     papaja::apa6_pdf:
+        pandoc_args:
+        - --filter
+        - pandoc-fignos
+fignos-cleveref: On
+fignos-plus-name: Figure
+header-includes: \usepackage{caption}
 ---
 
 ```{r preliminary, message = FALSE, warning = FALSE}
-library("papaja")
+library(papaja)
 library(pander)
 library(ggplot2)
 library(dplyr)
 library(tidyr)
 library(mvtnorm)
-library(ggthemes)
+# library(ggthemes)
+library(cowplot)
 
 source('~/thesis/papers/pgm-spt/R/utils.R')
 source('~/thesis/papers/pgm-spt/R/2d-particle-filter.R')
@@ -66,103 +78,224 @@ knitr::opts_chunk$set(cache = TRUE,
 ```
 
 
-
-# Preliminary
-
-generate some data:
-
-```{r generate-data-1, echo=FALSE, message=FALSE, warning=FALSE}
-dt <- 0.1
-motiondata <- generate_data(T = 2, amplitude = 20, sensor_sd = 2.0)
-plot_trajectories(motiondata = motiondata)
-```
-
-
-
-
-
 # Introduction
-
-## Notes
-We need to simulate the behaviour of a complex dynamical system.
-
-Few (if any) attempts have been made to connect higher-level vestibular cognition to the lower-level computations performed in the service of sensory inference. THis is rather surprising, since the vestibular system has some very interesting properties with direct relevance for cognitive systems, and it is comparatively well understood in terms of its dynamics and the sensory afferent signals
-
-# Simulating a dynamical system
-A dynamical system can be described by a set of differential equations; these differential equation relate the first order derivatives of the state to the state variables.
-
-Actually, the brain must solve __stochastic differential equations__.
-
-Write equations for position, velocity and acceleration. __Important:__ $\omega$, the rate of change (of angular position $\theta$), depends on the current position $\theta$. 
-
-These are the _forward kinematic equations_ (that take us from inputs (acceleration) to velocity and position). Given the kinematic equations, we can simulate entire trajectories through space.
-
-Why simulate? Movement through 3 dimensional space is complex (non-linear). It is 'easier' to simulate this kind of system using knowledge that is already available.
+ <!-- convey how the work constraints current theorizing over and above the current literature -->
  
-Simulatinf a movement through space is akin to planning a movement before it is carried out. This is a very challenging problem
+<!-- The aim of this paper is to describe potential contributions of the vestibular system to spatial perspective transformations in the context. of probabilistic sensory inference. -->
 
-> Euler’s method is probably the most simple and popular method for solving initial value problems for ODEs.
+Adopting the spatial perspective of another person is generally considered an essential cognitive ability, and plays a vital role in our ability to determine what another person can see and to understand another person's action possibilities, in order to coordinate joint actions [@CreemRegehr:2013kx, @Pezzulo:2013iy]. Many studies have also pointed out that is of fundamental importance for language comprehension and communication [@Beveridge:2013gx], and social cognition in general [@Deroualle:2014ho].  
 
+A number of recent studies have demonstrated that the vestibular system, which deals with sensory signal relating to movements of the head, is involved in such spatial transformations [@Lenggenhager:2008et, @Deroualle:2015gk, @Falconer:2012cl, @Gardner:2016kd]. However, to date, there has little attempt to understand the involvement of the vestibular system in higher-level cognitive abilities from a computational perspective. In this paper, we focus specifically on the role of the vestibular system for spatial perspective transformations, and we draw the link between probabilistic computations performed by the vestibular system in the service of real-time interaction with the world, and the brain's ability to run mental simulations for the purpose of adopting the perspective of another person.
 
-# Vestibular Cognition
-Two tasks thought to constitute vestibular cognition are : SPT and imagined self-motion. We show that both processes are thought to involve a simulated rotation about the body's vertical (yaw) axis. Describe both processes and show figure. Both can be interpreted as mentally simulated rotations. We refer to both as simulation: in this case we show that the simulation consists of simulating a dynamical system using a generative model. Simulation can also be thought of as a kind of internal 'replay' [@Takac:2012jc] or working memory representation
+Consider the use of deictic pronouns, such as "this" or "that" and "left" or "right". These terms only assume a their meaning when placed within a certain reference frame. For example, in a dialogue between two speakers, the statement "I would like that one", or "I would like the one on the right" can only be understood under the assumption that the deictic terms "that" and "right" are used in an egocentric reference frame. In addition, both interlocutors must be able to access the other's reference frame with respect to an external reference frame, which is independent of both interlocutors. In other words: In order to give instructions, the speaker must be able to mentally assume the addressee's position. A further example that requires a similar spatial transformation is when two people want to perform a coordinated action, such as lifting a heavy object. This requires having knowledge of the other's potential actions in order to adjust one's own actions, and this again requires knowledge of the other's position with an external reference frame. Furthermore, it is considered likely that merely possessing a visual representation is not sufficient [citation]. A judgement about what kind of actions the other person can perform, requires an embodied simulation using a representation of one's own body schema [@Pezzulo:2013iy]. The information necessary to perform this simulation is thus the position of the addressee's limbs, in their egocentric body coordinates, the position of the addressee's reference frame realtive to the external reference frame, and the difference between the speaker and the addressee's egocentric reference frames. Perspective taking thus can be conceived of as a aligning a representation of one's body with that of another person in order to access spatial information from a viewpoint other than one's own egocentric viewpoint. In order to achieve this alignment, one must perform translations and rotations of one's own egocentric reference frame. Processing translations and rotations of the head and body is the core domain of the vestibular system, and thus is of particular interest for research into mental spatial transformations. Spatial transformations in 6 dimensions (translation along 3 axes, and rotations around 3 axes) are highly complex, and non-linear, and it is commonly assumed that such transformations of perspective are performed by running embodied simulations [@Pezzulo:2013iy]. Thus, it seems that the brain adopts the strategy of simulating motion of the body through space in order achieve a desired target position. This effectively amounts to a running a simulation of dynamical system, consisting of limb movements and the resulting sensory consequences. Such a simulation has therefore been hypothesized to involve both motor and sensory components [citation]. @fig:spt-schematic (a) shows a simple scenario in which a speaker wants to give an addressee, standing opposite, verbal instructions regarding the location of an external object. In order to give appropriate instructions, the speaker must determine the most suitable action, given the addressee's position relative to the external object, and in order to achieve this goal, the speaker must align himself with the addressee, so that he can use his own body-centred reference frame to quickly simulate the best action. In this example, alignment with the addressee's reference frame consists of a forwards translation and a rotation around the vertical axis. This can be described as an imagined movement [citation], in which the goal is achieve a specific position. In order to do this, the speaker must first determine the parameters related to the movement, such as the type of movement, and the direction, velocity and duration that lead to the desired outcome. This means that in order to know what to simulate, the speaker must work backwards from the desired outcome, and infer the actions that are most likely to lead to that outcome. This is a well-known problem in the field of reinforcement learning, and planning in humans has been described in similar terms, as reverse inference [@Botvinick:2012fe]. @fig:spt-schematic (b) shows that if the goal is to simply simulate the perceptual experience of rotation, rather than project a representation of one's body onto a target, the problem is vastly simplified; however, the computational steps remain essential the same. In order to imagine a whole-body rotation around the vertical axis, the same parameters must be chosen. In this study, we focus on the simplified problem of imagined rotation around the body's vertical (yaw) axis. 
 
-![SPT and imagined self-motion involve common computations](diagrams/fig-1-common-process.pdf)
-But what are these computations? The brain could either solve the equation for the final position, or could run foward simulation of the dynamic system.
+![SPT and imagined self-motion involve common spatial transformations of a representation of the self. (a) If a speaker's goal is to take the perspective of an addressee, he must perform a translation and rotation of his own egocentric reference frame. These operations can be viewed as imagined movements.(b) Focussing on just the rotation around the vertical axis allows us to simplify the problem, and highlights the fact that perspective taking and mental imagery involve common computations.](diagrams/fig-1-common-process.pdf){#fig:spt-schematic}
 
-## Spatial Perspective Taking
+Performing a simulation of the behaviour of a dynamical system requires an internal model of the system. Whereas earlier notions of internal models followed the control-theoretic approach taken in sensorimotor research [@Wolpert:1998cc, @Shadmehr:2012vu], this idea has recently been applied more generally due to the use of Bayesian models of perception and cognition [Friston, Griffiths, Tenenbaum].
 
-cite Grabherr vestibular patients paper
+[@Pickering:2014bo] discuss the relationship between control-theoretic notions of forward models and and more genereal concepts of a generative model in a hierarchical Bayesian framework.
 
-## Imagined Self-Motion
+In short, running a simulation of a system requires a generative model. Where does this knowledge come from? __Here we make the link to models of vestibular sensry processing__.
 
-We investigate one specific type of head movement, a rotation of the head about the yaw axis, and discuss this in the context of the probabilistic computations that are performed when the goal is to:
+For this reason, we claim that the vestibular system offers a very promising field of research. On the one hand,  
 
-1) infer motion caused by external events
-2) infer the consequences of one's own actions.
+## Involvement of the vestibular system
+If the vestibular system is involved in spatial perspective taking, then this must be related to mental whole-body rotation, as the vestibular system is directly concerned with rotations and translations. In particular, the semi-circular canals (SCC) measure angular accelerations, and the upstream vestibular system provides the neural circuitry involved in processing these sensory measurements. The vestibular system faces a number of challenges in interpreting these sensory measurements. On the one hand, the signal provided by the SCC and otoliths are very noisy, and ambiguous [MacNeilage]; the otoliths respond to translations and tilt of the head relative to gravity, and in order to disambiguate between translation and tilt, the brain must perform sophisticated computations at the level of the brain stem. It has become clear that the nature of these computations is probabilistic, and that the brain makes use of strong prior beliefs in order to interpret these sensory signals.
 
-## Common Computations
-
-
-Head direction cells are thought to integrate signals of vestibular origin to maintain a signal of cumulative rotation (reviewed in @Taube:2007fk and are found in many brain areas, including the postsubiculum, retrosplenial cortex, thalamus, lateral mammillary nucleus, dorsal tegmental nucleus, striatum and entorhinal cortex [@Cullen:2014gx]. This may be necessary in order to mentally simulate being in another position, i.e. the brain apparently needs to simulate the n-step dynamics of its motion through space. Why is this? Because vestibular connections make a major contribution to spatial orientation; information about the position in space obtained through the vestibular sensory system is computed by integrating velocity over time.
-
-The computations performed for SPT require a generative model. Further, we can identify two main topics:
-
-1) the probabilistic computations performed during sensory inference
-2) the computations carried out by the brain in order to distinguish between sensory consequences of voluntary actions and externally produced actions. The cerebellum is thought to be the site of a forward model that predicts the sensory consequences of self-generated action [@Brooks:2013cf], which is then 'compared' to the actual sensory stimulation in order to compute a prediction error.
+A further challenge faced by the brain is that it cannot determine whether the sensory signals provided by the SCC and otolith signals m
 
 
-> The brain has a generative model for simulation. Where does this model come from? We show that this is precisely what the brain uses in order to perform sensory inference.
+## Focus on vestibular system
+- active motion, efference copy, etc
+- generative model
 
-> Tasks performed by a moving agent: sense our movements in space. This is made challenging by the fact the we move, and our sensory data may be due to our own movements, or externally applied forces. THese need to be distinguished, as they have to be handled differently. Exteranlly applied forces need to be compensated for, whereas this is often not the case for volitional movements.
+- mental simulations involves forward models
+- interesting, because vestibular system is well-described in terms of control theory
 
-# Vestibular System
 
-# Dynamic Probabilistic Model
-The generative model consists of several components (Process model, observation model), some of which (process model) are re-used for simulation, while the observation model is not needed for simulation. It might however, provide a useful function (play a role) in simulation, by indicating whether the data are fit well or not (usually they are not).
+<!-- give a few short examples: -->
+<!-- - deictic pronouns: here, there, left, right, this or that -->
+<!-- - performing joint actions (shared action space): lifting a heavy object -->
 
-# Inference
+Imagined motion through space vs. rotating contents of visual buffer
 
-this is a reference to \autoref{figurelabel}
+# Dynamic Bayesian models for sensory inference
 
-![This is the caption \label{figurelabel}](diagrams/figure-particle-filter-explained.pdf)
-# Model description
+## Related Work: Previous models for sensory inference
+We begin by briefly reviewing previous probabilistic models of sensory inference:
+Whereas early studies largely adopted approached inspired by control theory, several recent studies have described vestibular sensory processing as dynamic Bayesian inference [@PaulRMacNeilage:2008bv, @Karmali:2012cv, @Laurens:2006be]. In particular, @Karmali:2012cv and @Laurens:2006be described sensory inference in terms of particle filtering, which is a particular inference algorithm that can be used to perform inference in a non-linear state-space model [@Doucet:2000bh, @Doucet:2009us]. 
 
+State-space models can be seen as special cases of more general Bayesian hierarchcal models [@Bishop:2006ui; @Murphy:2012ua; @Koller:2009ty].
+
+## Summary
+
+
+
+
+## Reframe as PGM
+
+# Extend previous models with control input
+
+Here we extend the basic particle filtering (algorithm) model, in order to:
+
+- provide the capability to model the sensory consequences of self-initiated actions
+- provide the capability to run a Monte Carlo simulation using the same generative model as is used for sensory inference
+
+## State-Space Model
+
+## Inference Algorithm 
+Sequential Monte Carlo
+
+# Modelling questions
+Experimental results to be explained: @Wertheim:2001cb report a cognitive suppression of otolith responses, based on participants' prior beliefs about possible motions.
+
+# An Investigation of Various Priors
+Here, we identify the various forms of predictive processing in the context of real-time sensory inference using SMC
+## Related to Filtering Algorithm
+## Higher-level Priors
+
+# Various sources of interference
+Here, we identify various sources of intereference (2-way) between thought (higher-level cognition) and lower-level sensory processing
+
+## Model mis-specification
+## Re-use of same generative model
+This may lead to leakage, i.e. inadvertently incorporating sensory evidence 
+
+## Decision-making
+The interference may be explained in terms of higher-level perceptual decision -making mechanisms
+## evidence accumulation
+## bias (Starting point)
 
 # Simulations
 
-We simulate various scenarios of model mis-spefication
 
-```{r}
-library(tables, quietly = TRUE)
-tab <- tabular( (Species + 1) ~ (n=1) + Format(digits=2)*
-         (Sepal.Length + Sepal.Width)*(mean + sd), data=iris )
-pander(tab)
+# General Discussion
+
+# Summary and conclusions
+# Motion Data
+
+```{r generate-data-1, echo=FALSE, message=FALSE, warning=FALSE}
+dt <- 0.1
+motiondata <-  generate_data(T = 2, frequency = 0.5,
+                             amplitude = 20,
+                             sensor_sd = 2.0)
+# plot_trajectories(motiondata = motiondata)
+
+motiondata_hidden <- motiondata %>%
+    gather(type, value = value, -time) %>%
+    filter(type != "observations") %>%
+    mutate(type = factor(type,
+                         levels = c("position",
+                                    "velocity",
+                                    "acceleration")))
+
+
+
+p1 <- motiondata_hidden %>%
+        ggplot(aes(x = time, y = value)) +
+            geom_line(aes(linetype = type), size = 1.4) +
+            geom_point(data = motiondata,
+                       aes(x = time, y = observations),
+                       shape = 21, colour = "white",
+                       fill = "white", size = 6, stroke = 2) +
+            geom_point(data = motiondata,
+                       aes(x = time, y = observations),
+                       shape = 21, colour = "black",
+                       fill = "white", size = 4, stroke = 2) +
+            guides(linetype = guide_legend(keywidth = 2.5, keyheight = 1)) +
+            xlab("Time (sec)") +
+            ylab("Angular position (deg)") +
+            theme_apa() +
+            theme(legend.title=element_blank())
+
+
+motiondata_2 <-  generate_data(T = 2, frequency = 0.5,
+                             amplitude = -20,
+                             sensor_sd = 1.8)
+# plot_trajectories(motiondata = motiondata)
+
+motiondata_hidden_2 <- motiondata_2 %>%
+    gather(type, value = value, -time) %>%
+    filter(type != "observations") %>%
+    mutate(type = factor(type,
+                         levels = c("position",
+                                    "velocity",
+                                    "acceleration")))
+
+
+
+p2 <- motiondata_hidden_2 %>%
+        ggplot(aes(x = time, y = value)) +
+            geom_line(aes(linetype = type), size = 1.4) +
+            geom_point(data = motiondata_2,
+                       aes(x = time, y = observations),
+                       shape = 21, colour = "white",
+                       fill = "white", size = 6, stroke = 2) +
+            geom_point(data = motiondata_2,
+                       aes(x = time, y = observations),
+                       shape = 21, colour = "black",
+                       fill = "white", size = 4, stroke = 2) +
+            guides(linetype = guide_legend(keywidth = 2.5, keyheight = 1)) +
+            xlab("Time (sec)") +
+            ylab("Angular position (deg)") +
+            theme_apa() +
+            theme(legend.title=element_blank())
+
+cowplot::plot_grid(p1, p2, nrow = 2, labels = c("a", "b"))
 ```
 
-# Discussion
 
-A simple model for perceptual decision-making: evidence accumulation via log-likelihood difference test.
+# Test Simulations
+
+```{r passive, echo=FALSE, message=FALSE, warning=FALSE}
+params <- list(sdx = c(0.8, 0.8) * eye(2), sdy = 2.0,
+                x_init = c(0, 0),
+                sdx_init = 0.5*eye(2),
+                A = 20, N = 1000,
+                dt = 0.1, freq = 0.5,
+                transfun = transfun)
+
+passive <- run_particle_filter(motiondata = motiondata, params = params,
+                            resample_particles = TRUE, rs_thresh = 0.5,
+                            selfmotion = "passive")
+
+plot(passive, panel_label = "", print_loglik = TRUE, predict = FALSE, imagine = FALSE)
+```
+
+```{r echo=FALSE}
+plot_pf_estimates(object = passive, predict = FALSE)
+```
+
+
+
+# Tables
+
+  Right     Left     Center     Default
+-------     ------ ----------   -------
+     12     12        12            12
+    123     123       123          123
+      1     1          1             1
+
+Table:  Demonstration of simple table syntax.
+
+
+-------------------------------------------------------------
+ Centered   Default           Right Left
+  Header    Aligned         Aligned Aligned
+----------- ------- --------------- -------------------------
+   First    row                12.0 Example of a row that
+                                    spans multiple lines.
+
+  Second    row                 5.0 Here's another one. Note
+                                    the blank line between
+                                    rows.
+-------------------------------------------------------------
+
+Table: Here's the caption. It, too, may span
+multiple lines.
+
+
+
 
 \newpage
 

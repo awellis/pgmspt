@@ -1,0 +1,29 @@
+# head direction cells
+
+[@Taube:2007fk]
+
+- mental simulation cannot just er-use the state used in sensory inference, because the velocity is fed to the head directino cells. The brain would get confused
+
+- directinal signal is not just a simple integration of velocity signals from the vestibular system
+- signals from motor efferecence copy or proprioceptive systems appear to be crucial for upating the preferred firing direction over time
+- what about this? you don't know where you are, because you were passively moved. Can you update if I tell you (verbally instruct you)?
+- vestibular input is eesntial for establishing the head direction signal? How can we reconcile this with the assumption that re-afference is cancelled, i.e. input due to active motion is cancelled. Maybe it's the control model...
+
+# Corollary discharge
+[@Crapse:2008jc]
+
+
+# Predictive control 
+[@Stahl:2011dl]
+
+
+- movemements can induce sensory input
+- sensory input due to own actions is indistinguishable from input due to external forces
+- strategy: efference copy -> corollary discharge
+
+it seems intuitively obvious that this mechanism has something to do with mental imagery.
+This has been pointed out many times; mental imagery and mental simulation more generelly is somehow related to the capacity to compute corollay discharge, based on the efference copy and a forward model.
+
+> Necessary components:  efference copy and a forward model
+
+Sensory receptors don't care about their input. The brain has to deal with the problem further downstream

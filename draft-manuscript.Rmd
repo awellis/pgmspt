@@ -1,0 +1,228 @@
+---
+    title             : "A Computational Perspective On Spatial Perspective Transformations: From Sensory Inference To Imagined Self-motion"
+# title             : "Probabilistic Computations Underlying Simulated Self-Rotations"
+# title: Probabilistic Computations Underlying Vestibular Cognition
+shorttitle        : "A Computational Perspective"
+
+author:
+    - name          : "Andrew W. Ellis"
+# affiliation   : "1"
+corresponding : yes    # Define only one corresponding author
+address       : "Fabrikstrasse 8, 3012 Bern, Switzerland"
+email         : "andrew.ellis@psy.unibe.ch"
+- name          : "Fred W. Mast"
+# affiliation   : "1"
+
+affiliation:
+    - id            : "1"
+institution   : "Department of Psychology, University of Bern"
+
+
+author_note: >
+    Andrew W. Ellis, Fred W. Mast, Department of Psychology.
+
+AE and FM planned and conducted the research; AE and FM analyzed the data and wrote the manuscript.
+
+Raw data and analysis scripts are available at https://osf.io/u26mq.
+
+
+abstract: >
+    Recent research showed the involvement of vestibular information in cognitive processes. We provide a computational framework for vestibular cognition and thereby focus on perspective transformations, which require a simulated rotation of the self. We explore how the ability to model the effects of body rotation using vestibular input might enable the ability to imagine body rotations. We approach this problem by considering a simple agent endowed with a complex statistical model of the hidden causes of its sensory input. We explain how this statistical model enables the agent to predict its sensory input and hidden sensory variables. Based on a probabilistic graphical model, we formalize qualitative concepts of mental simulation. Predicting the sensory input is key to understanding imagined rotations. Mental imagery goes beyond prediction, rather, it involves the use of counterfactual queries in a probabilistic model.
+
+
+keywords          : Probabilistic graphical models, Particle filter, Embodied cognition, Vestibular cognition, Spatial perspective taking, Mental imagery
+wordcount         : "X"
+
+bibliography      : ["bibliography.bib"]
+
+figsintext        : yes
+figurelist        : yes
+tablelist         : yes
+footnotelist      : no
+lineno            : yes
+citeproc          : yes
+csl               : apa.csl
+
+lang              : "english"
+class             : "man"
+output            : papaja::apa6_word
+# output            : papaja::apa6_pdf
+---
+
+    ```{r preliminary, message = FALSE, warning = FALSE}
+library("papaja")
+library(pander)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(mvtnorm)
+library(ggthemes)
+
+source('~/thesis/papers/pgm-spt/R/utils.R')
+source('~/thesis/papers/pgm-spt/R/2d-particle-filter.R')
+source('~/thesis/papers/pgm-spt/simulations/rbiips-model.R')
+
+knitr::opts_chunk$set(cache = TRUE,
+                      fig.width = 12, fig.height = 8,
+                      dpi = 600, fig.path = "../generated-figures/",
+                      dev=c('pdf', 'png', 'cairo_ps'))
+```
+
+
+
+
+
+# Preliminary
+
+> Perspective taking: ability to project our body image onto other actors.
+
+- higher level variables generate an entire sequence of control commands
+- show models:
+    + passive model for low-level sensory inference
++ active model with control input for anticipating sensory consequences of active movement
++ the active model can be used for:
+    - estimating ex-afference
+- "interpreting" senosry signals when these are very noisy/difficult. In other words, when the stimulus is difficult, we need to interpret the data. We claim that this makes use of the control input model.
+- intereference as the result of
++ inappropriately applying active control model for sensory estimation, leadin to mis-specified model
++ wrong prior during model selection
+- show various scenarios for interference:
+    + decision making for motion direction discrimination
++ imaginining motion may result in inadvertently using an active motion model for inference in a subsequent trial. IN a discrimination trial, participants need to perfom decision-making. THerefore, we need to understand decision-making. We present a model of how decision-making in a 2afc experiment may occur (Bayesian model selection -> sequential Bayes factor)
++ if imagery was in a specific direction, this may result in an expectation. Define prior, expectation, anticipation, etc.
+
+
+generate some data:
+
+    ```{r generate-data-1, echo=FALSE, message=FALSE, warning=FALSE}
+dt <- 0.1
+motiondata <- generate_data(T = 2, amplitude = 20, sensor_sd = 2.0)
+plot_trajectories(motiondata = motiondata)
+```
+
+
+
+
+
+
+
+## Notes
+We need to simulate the behaviour of a complex dynamical system.
+
+Why does the brain need to simulate? Because in the case of complex, non-linear transformations, the brain does not have acces to analytical solutions, and must therefore rely on simulations. Intuitively, the brain uses the 'cheap' solution of simulating a dyanmic system (i.e. movement of the body through space), because it already posseses the machinery to perform these simulations, and because analytic solutions to complex mulit-dimensional rotations and translation are hard to obtain.
+
+Few (if any) attempts have been made to connect higher-level vestibular cognition to the lower-level computations performed in the service of sensory inference. THis is rather surprising, since the vestibular system has some very interesting properties with direct relevance for cognitive systems, and it is comparatively well understood in terms of its dynamics and the sensory afferent signals
+
+# Simulating a dynamical system
+A dynamical system can be described by a set of differential equations; these differential equation relate the first order derivatives of the state to the state variables.
+
+Actually, the brain must solve __stochastic differential equations__.
+
+Write equations for position, velocity and acceleration. __Important:__ $\omega$, the rate of change (of angular position $\theta$), depends on the current position $\theta$.
+
+These are the _forward kinematic equations_ (that take us from inputs (acceleration) to velocity and position). Given the kinematic equations, we can simulate entire trajectories through space.
+
+Why simulate? Movement through 3 dimensional space is complex (non-linear). It is 'easier' to simulate this kind of system using knowledge that is already available.
+
+Simulatinf a movement through space is akin to planning a movement before it is carried out. This is a very challenging problem
+
+> Euler’s method is probably the most simple and popular method for solving initial value problems for ODEs.
+
+
+# Vestibular Cognition
+Two tasks thought to constitute vestibular cognition are : SPT and imagined self-motion. We show that both processes are thought to involve a simulated rotation about the body's vertical (yaw) axis. Describe both processes and show figure. Both can be interpreted as mentally simulated rotations. We refer to both as simulation: in this case we show that the simulation consists of simulating a dynamical system using a generative model. Simulation can also be thought of as a kind of internal 'replay' [@Takac:2012jc] or working memory representation
+
+![SPT and imagined self-motion involve common computations](diagrams/fig-1-common-process.pdf)
+
+But what are these computations? The brain could either solve the equation for the final position, or could run foward simulation of the dynamic system.
+
+> SPT and mental imagery as active construction, not just memory recall
+
+## Spatial Perspective Taking
+
+cite Grabherr vestibular patients paper
+
+## Imagined Self-Motion
+[@Tian:2012ui]
+Is mental imagery an internal predictive process?
+
+Mental imagery is further hypothesized to be a predictive process (for future perceptual states), in which the dynamics of perceptual experience can be retrieved/calculated and reconstructed internally (Moulton and Kosslyn, 2009).
+
+Mental imagery is oftern portrayed as being the result of top-down reconstruction of activity in perceptual circuits in the absence of physical stimulation of the sensors, and is opposed to bottom-up perception. However, in the case of the vestibular system, it becomes clear that this view is inadequate (the same is true for other modalities): the sensory that the vestibular sensors provide is noisy and ambiguous (examples), and in order to deal with these facts, the brain must use several strategies (which are well-known from control theory). It is assumed that the brain uses (at least approximatively) statistically optimal filtering algorithms. Initia research cast the type of processing in the framework of control theory (optimal observer models); however @Selva:2012gsa showed that these models are equivalent to statistically optimal models (Kalman filters), in the case of linear dynamical systems.
+
+That is, given an initial point, the series of future perceptual states can be internally simulated by following the regularity (temporal and causal constraints) stored in declarative memory (general knowl- edge). The mapping between internal simulation and the per- ception of external stimulation is thought not to be necessarily isomorphic (Goldman, 1989), as only the essential intermediate states are required to have a one-to-one mapping (Fisher, 2006).
+
+
+We investigate one specific type of head movement, a rotation of the head about the yaw axis, and discuss this in the context of the probabilistic computations that are performed when the goal is to:
+
+1) infer motion caused by external events
+2) infer the consequences of one's own actions.
+
+## Common Computations
+
+
+Head direction cells are thought to integrate signals of vestibular origin to maintain a signal of cumulative rotation (reviewed in @Taube:2007fk and are found in many brain areas, including the postsubiculum, retrosplenial cortex, thalamus, lateral mammillary nucleus, dorsal tegmental nucleus, striatum and entorhinal cortex [@Cullen:2014gx]. This may be necessary in order to mentally simulate being in another position, i.e. the brain apparently needs to simulate the n-step dynamics of its motion through space. Why is this? Because vestibular connections make a major contribution to spatial orientation; information about the position in space obtained through the vestibular sensory system is computed by integrating velocity over time.
+
+                                                                                                                        The computations performed for SPT require a generative model. Further, we can identify two main topics:
+
+                                                                                                                            1) the probabilistic computations performed during sensory inference
+2) the computations carried out by the brain in order to distinguish between sensory consequences of voluntary actions and externally produced actions. The cerebellum is thought to be the site of a forward model that predicts the sensory consequences of self-generated action [@Brooks:2013cf], which is then 'compared' to the actual sensory stimulation in order to compute a prediction error.
+
+
+> The brain has a generative model for simulation. Where does this model come from? We show that this is precisely what the brain uses in order to perform sensory inference.
+
+> Tasks performed by a moving agent: sense our movements in space. This is made challenging by the fact the we move, and our sensory data may be due to our own movements, or externally applied forces. THese need to be distinguished, as they have to be handled differently. Exteranlly applied forces need to be compensated for, whereas this is often not the case for volitional movements.
+
+# Interferene
+We walk through several common conceptions of "interference" and explain these in terms of an agent performing mental simulations whilst simultaneously attempting to interact with its environment by performing sensory inference.
+
+We can define interference as the phenomenon that sensory inference (filtering) is affected by another process (simulation) using (parts of) the same generative model. The agent has two goals: firstly, it has to interact with the environment, using its sensors, and it has to analyze the data. Secondly, the agent wishes to plan or simulate, using the same generative model. It is currently unclear to what extent the brain is able to segregate the two processes.
+
+# Vestibular System
+
+# Dynamic Probabilistic Model
+The generative model consists of several components (Process model, observation model), some of which (process model) are re-used for simulation, while the observation model is not needed for simulation. It might however, provide a useful function (play a role) in simulation, by indicating whether the data are fit well or not (usually they are not).
+
+# Inference
+
+this is a reference to \autoref{figurelabel}
+
+![This is the caption \label{figurelabel}](diagrams/figure-particle-filter-explained.pdf)
+# Model description
+
+
+
+
+# Particle Filtering
+Using difference equations, the stochastic state space model can be written as:
+    $$ x_{t} = f(x_{t-1}, u_{t-1}, \nu) $$
+    $$ y_{t} = g(x_{t}, \eta) $$
+
+    where ...
+
+The state space model consists of an unobservale state process, $x$, and an observable process $y$. The latent state is modelled as a first-order Markov process, which means that $x_t$ is conditionally independent of the past, given the previous value. Therefore, the latent process is completely described by its iniial conditions, $x_0$, and the transition distribution. The observation process depends only on the current state.
+
+# Simulations
+
+We simulate various scenarios of model mis-spefication
+
+```{r}
+library(tables, quietly = TRUE)
+tab <- tabular( (Species + 1) ~ (n=1) + Format(digits=2)*
+                    (Sepal.Length + Sepal.Width)*(mean + sd), data=iris )
+pander(tab)
+```
+
+# Discussion
+
+A simple model for perceptual decision-making: evidence accumulation via log-likelihood difference test.
+
+\newpage
+
+# References
+```{r create_r-references}
+# r_refs(file = "r-references.bib")
+```
+
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
