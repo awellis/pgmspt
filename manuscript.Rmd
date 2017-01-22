@@ -136,12 +136,13 @@ State-space models can be seen as special cases of more general Bayesian hierarc
 
 # Extend previous models with control input
 
-Here we extend the basic particle filtering (algorithm) model, in order to:
+For sensory inference of a passive disturbance, the algorithm can be run with fixed parameters. Here we extend the basic particle filtering (algorithm) model, in order to:
 
-- provide the capability to model the sensory consequences of self-initiated actions
+- __provide the capability to model the sensory consequences of self-initiated actions__ (i.e. predict/infer the consequences of one's own actions)
 - provide the capability to run a Monte Carlo simulation using the same generative model as is used for sensory inference
 
-## State-Space Model
+## Generative Model
+The generative model is a state-space model, which itself is a dynamic model consisting of latent (state variables) and observed (measured) variables.
 
 ## Inference Algorithm 
 Sequential Monte Carlo
@@ -153,11 +154,14 @@ Experimental results to be explained: @Wertheim:2001cb report a cognitive suppre
 Here, we identify the various forms of predictive processing in the context of real-time sensory inference using SMC
 ## Related to Filtering Algorithm
 ## Higher-level Priors
+control input -> infer the consequences of one's own actions.
 
 # Various sources of interference
 Here, we identify various sources of intereference (2-way) between thought (higher-level cognition) and lower-level sensory processing
 
 ## Model mis-specification
+If an observer uses a strong higher level prior, i.e. the wrong direction, this means that the data may be completely mis-interpreted. (call this: the effect of inappropriate priors [@Schwabe:2008ho])
+
 ## Re-use of same generative model
 This may lead to leakage, i.e. inadvertently incorporating sensory evidence 
 
@@ -166,12 +170,28 @@ The interference may be explained in terms of higher-level perceptual decision -
 ## evidence accumulation
 ## bias (Starting point)
 
+## Summary
+Interference may the result of either inappropriate priors, leading to a mis-specified filtering algorithm, or biased decision-making. We should be able to investigate which by applying cognitive process models that explain response times and choices.
+
 # Simulations
 
 
 # General Discussion
+## A comparison with previous models
+Unfortunately, there aren't many, but see [@Hiatt:2004tv]
+
+## Support for our model: Nigmatullina
+
+## Neuronal implementation
+[@Lopez:2012ek; @Lopez:2011cc]
+[@Klingner:2016ia]
+[@zuEulenburg:2012bh]
+
 
 # Summary and conclusions
+
+# Acknowledgements
+
 # Motion Data
 
 ```{r generate-data-1, echo=FALSE, message=FALSE, warning=FALSE}
