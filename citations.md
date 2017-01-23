@@ -28,3 +28,14 @@
 [@Gambi:2015gv]
 [@Moulton:2009ij]
 [@Clark:2012vf]
+
+## Neuronal implementations
+[@Lopez:2012ek; @Lopez:2011cc]
+[@Klingner:2016ia]
+[@zuEulenburg:2012bh]
+[@Pouget:2000dx]
+
+## Particle filters
+PF are usually run with fixed parameters, but parameters can be estimated with
+### Particle Markov Chain Monte Carlo (PMCMC)
+[@Andrieu:2010gc]
