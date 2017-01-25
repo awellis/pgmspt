@@ -5,30 +5,41 @@
 [@Pezzulo:2013iy]
 [@CreemRegehr:2013ej]
 [@Deroualle:2015gk]
-
+[@Grabherr:2008kk; @Carriot:2014fv]
+[@Cullen:2009dc]
+[@Cullen:2014gx]
 [@Deroualle:2014ho]
 [@Falconer:2012cl]
 [@PaulRMacNeilage:2008bv]
 [@Doucet:2000bh, @Doucet:2009us]
 [@CreemRegehr:2013kx]
 [@Falconer:2012cl]
-
-
+[@Wolpert:1998td]
+[@Wolpert:2003gm]
 [@Bishop:2006ui; @Murphy:2012ua; @Koller:2009ty]
 [@Botvinick:2012fe]
 [@Wolpert:1995hc]
-
+[@Nigmatullina:2015gh]
 [@Wolpert:1998cc]
-
+[@Penny:2013iv]
 [@Shadmehr:2012vu]
-
+[@Selva:2012gsa]
 [@Pickering:2014bo]
+[@Merfeld:1999cg]
+[@Borah:1988fd]
+[@Ellis:2017fg]
+## Active movements
+[@Crapse:2008jc]
+[@Tian:2012ui]
+
+[@Merfeld:2016il]
 
 ## Mental imagery and predictions
 [@Gambi:2015gv]
 [@Moulton:2009ij]
 [@Clark:2012vf]
-
+[@Grush:2004wx]
+[@Wertheim:2001cb]
 ## Neuronal implementations
 [@Lopez:2012ek; @Lopez:2011cc]
 [@Klingner:2016ia]
@@ -36,6 +47,10 @@
 [@Pouget:2000dx]
 
 ## Particle filters
+[@Doucet:2000bh; @Doucet:2009us]
+[@Speekenbrink:2016kc]
 PF are usually run with fixed parameters, but parameters can be estimated with
 ### Particle Markov Chain Monte Carlo (PMCMC)
+[@Andrieu:2010gc]
+[@Blei:2014cp]
 [@Andrieu:2010gc]

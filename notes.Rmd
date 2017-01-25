@@ -27,3 +27,76 @@ This has been pointed out many times; mental imagery and mental simulation more 
 > Necessary components:  efference copy and a forward model
 
 Sensory receptors don't care about their input. The brain has to deal with the problem further downstream
+
+
+
+
+```{r generate-data-1, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+dt <- 0.1
+motiondata <-  generate_data(T = 2, frequency = 0.5,
+                             amplitude = 20,
+                             sensor_sd = 2.0)
+# plot_trajectories(motiondata = motiondata)
+
+motiondata_hidden <- motiondata %>%
+    gather(type, value = value, -time) %>%
+    filter(type != "observations") %>%
+    mutate(type = factor(type,
+                         levels = c("position",
+                                    "velocity",
+                                    "acceleration")))
+
+
+
+p1 <- motiondata_hidden %>%
+        ggplot(aes(x = time, y = value)) +
+            geom_line(aes(linetype = type), size = 1.4) +
+            geom_point(data = motiondata,
+                       aes(x = time, y = observations),
+                       shape = 21, colour = "white",
+                       fill = "white", size = 6, stroke = 2) +
+            geom_point(data = motiondata,
+                       aes(x = time, y = observations),
+                       shape = 21, colour = "black",
+                       fill = "white", size = 4, stroke = 2) +
+            guides(linetype = guide_legend(keywidth = 2.5, keyheight = 1)) +
+            xlab("Time (sec)") +
+            ylab("Angular position (deg)") +
+            theme_apa() +
+            theme(legend.title=element_blank())
+
+
+motiondata_2 <-  generate_data(T = 2, frequency = 0.5,
+                             amplitude = -20,
+                             sensor_sd = 1.8)
+# plot_trajectories(motiondata = motiondata)
+
+motiondata_hidden_2 <- motiondata_2 %>%
+    gather(type, value = value, -time) %>%
+    filter(type != "observations") %>%
+    mutate(type = factor(type,
+                         levels = c("position",
+                                    "velocity",
+                                    "acceleration")))
+
+
+
+p2 <- motiondata_hidden_2 %>%
+        ggplot(aes(x = time, y = value)) +
+            geom_line(aes(linetype = type), size = 1.4) +
+            geom_point(data = motiondata_2,
+                       aes(x = time, y = observations),
+                       shape = 21, colour = "white",
+                       fill = "white", size = 6, stroke = 2) +
+            geom_point(data = motiondata_2,
+                       aes(x = time, y = observations),
+                       shape = 21, colour = "black",
+                       fill = "white", size = 4, stroke = 2) +
+            guides(linetype = guide_legend(keywidth = 2.5, keyheight = 1)) +
+            xlab("Time (sec)") +
+            ylab("Angular position (deg)") +
+            theme_apa() +
+            theme(legend.title=element_blank())
+
+cowplot::plot_grid(p1, p2, nrow = 2, labels = c("a", "b"))
+```
