@@ -51,12 +51,11 @@ linkcolor         : "blue"
 
 lang              : "english"
 class             : "man"
-# output            : papaja::apa6_word
 output:
-     # papaja::apa6_word
+     # papaja::apa6_word:
      papaja::apa6_pdf:
         pandoc_args:
-        fig_caption: true
+            fig_caption: true
 ---
 
 ```{r preliminary, cache=FALSE, message = FALSE, warning = FALSE}
@@ -75,8 +74,8 @@ source('~/thesis/papers/pgm-spt/simulations/rbiips-model.R')
 
 knitr::opts_chunk$set(cache = TRUE,
                       fig.width = 12, fig.height = 8,
-                      dpi = 600, fig.path = "../generated-figures/",
-                      dev=c('pdf', 'png', 'cairo_ps'))
+                      dpi = 600, fig.path = "generated-figures/",
+                      dev=c('pdf', 'png', 'tiff', 'cairo_ps'))
 ```
 
 
@@ -95,7 +94,12 @@ A number of recent studies have demonstrated that the vestibular system, which d
 Consider the use of deictic pronouns, such as "this" or "that" and "left" or "right". These terms only assume a their meaning when placed within a certain frame of reference (FOR). For example, in a dialogue between two speakers, the statement "I would like that one", or "I would like the one on the right" can only be understood under the assumption that the deictic terms "that" and "right" are used in an egocentric FOR. In addition, both interlocutors must be able to access the other's FOR with respect to an external FOR. In other words: In order to give instructions, the speaker must be able to mentally assume the addressee's position in space. A further example that requires a similar spatial transformation is when two people want to perform a coordinated action, such as lifting a heavy object. This requires having knowledge of the other's potential actions in order to adjust one's own actions, and this again requires knowledge of the other's position with an external FOR. A judgement about what kind of actions the other person can perform requires an embodied simulation using a representation of one's own body schema [@Pezzulo:2013iy]. Giving an instruction to another person thus requires running an embodied simulation in order to infer what kind of motor commands the other person should perform __[Blakemore and Decety, 2001; Wolpert et al., 2003; Jeannerod, 2006; Pezzulo et al., 2007, 2013; Dindo et al., 2011; Pezzulo, 2011a,b]__. This embodied simulation is performed using one's own body schema. Communicating this information to the other actor requires knowing the position of the addressee's FOR relative to the external reference frame, and the difference between the speaker and the addressee's egocentric reference frames. Perspective taking thus can be conceived of as a aligning a representation of one's body with that of another person in order to access spatial information from a viewpoint other than one's own egocentric viewpoint. In order to achieve this alignment, one must perform translations and rotations of one's own egocentric reference frame. Processing translations and rotations of the head and body is the core domain of the vestibular system, and thus is of particular interest for research into mental spatial transformations. 
 Spatial transformations in 6 dimensions (translation along 3 axes, and rotations around 3 axes) are highly complex, and non-linear, and we propose that the brain adopts the strategy of simulating motion of the body through space in order achieve a desired target position. This effectively amounts to a running a simulation of dynamical system, consisting of simulated limb movements and the resulting sensory consequences. \autoref{fig:spt-schematic} (a) shows a simple scenario in which a speaker wants to give an addressee, standing opposite, verbal instructions about an action to perform on an external object. The speaker must determine the most suitable action, given the addressee's position relative to the external object, and in order to achieve this goal, the speaker must align himself with the addressee, so that he can use his own body-centred reference frame to quickly simulate the best action. In this example, alignment with the addressee's reference frame consists of a forwards translation and a rotation around the vertical axis. This can be described as an imagined movement, in which the goal is achieve a specific position. 
 
-![Perspective taking and imagined self-motion involve spatial transformations of a representation of the self. (a) If a speaker's goal is to take the perspective of an addressee, he must first solve the inverse problem of determining the appropriate action, and then run a forwards simulation in order to perform a translation and rotation of his own egocentric reference frame. These operations can be viewed as imagined movements.(b) Focussing on imagined rotation around the vertical axis allows us to simplify the problem, and highlights the fact that perspective taking and mental imagery involve common computations.](diagrams/fig-1-common-process.pdf){#fig:spt-schematic width=75%}
+<!-- ![Perspective taking and imagined self-motion involve spatial transformations of a representation of the self. (a) If a speaker's goal is to take the perspective of an addressee, he must first solve the inverse problem of determining the appropriate action, and then run a forwards simulation in order to perform a translation and rotation of his own egocentric reference frame. These operations can be viewed as imagined movements.(b) Focussing on imagined rotation around the vertical axis allows us to simplify the problem, and highlights the fact that perspective taking and mental imagery involve common computations.](diagrams/fig-1-common-process.tiff){#fig:spt-schematic width=75%} -->
+
+
+```{r spt-schematic, fig.cap="Perspective taking and imagined self-motion involve spatial transformations of a representation of the self. (a) If a speaker's goal is to take the perspective of an addressee, he must first solve the inverse problem of determining the appropriate action, and then run a forwards simulation in order to perform a translation and rotation of his own egocentric reference frame. These operations can be viewed as imagined movements.(b) Focussing on imagined rotation around the vertical axis allows us to simplify the problem, and highlights the fact that perspective taking and mental imagery involve common computations.", echo=FALSE}
+knitr::include_graphics('diagrams/fig-1-common-process.tiff')
+```
 
 In order to do this, the speaker must first determine what type of movement to perform, and the direction, velocity and duration that lead to the desired outcome. This means that in order to know what to simulate, the speaker must first work backwards from the desired outcome, and infer the actions that are most likely to lead to that outcome. This is known in the field of motor control as the inverse problem [@Wolpert:1998td]. In order to achieve the desired position, the motor commands can then be simulated, and the expected sensory consequences can be estimated; this is known as the forward problem.  \autoref{fig:spt-schematic} (b) shows that if the goal is to simply simulate the perceptual experience of rotation around the body's vertical (yaw) axis, rather than project a representation of one's body onto a target, the problem is simplified; the actor can perform forward inference without the need to determine the optimal motor action. As demonstrated by @Penny:2013iv, these computations can be performed in a common probabilistic model. Interestingly, this has been discussed in the context of reinforcement learning, and planning in humans has been described as reverse inference [@Botvinick:2012fe]. Further, [@Pickering:2014bo] discuss the relationship between control-theoretic notions of inverse/forward models, known collectively as internal models, and and more general concepts of a generative model in a hierarchical Bayesian framework.
 
@@ -131,34 +135,33 @@ dt <- 0.1
 motiondata <-  generate_data(T = 2, frequency = 0.5,
                              amplitude = 20,
                              sensor_sd = 2.0)
-# plot_trajectories(motiondata = motiondata)
-
-motiondata_hidden <- motiondata %>%
-    gather(type, value = value, -time) %>%
-    filter(type != "observations") %>%
-    mutate(type = factor(type,
-                         levels = c("position",
-                                    "velocity",
-                                    "acceleration")))
-
-p1 <- motiondata_hidden %>%
-        ggplot(aes(x = time, y = value)) +
-            geom_line(aes(linetype = type), size = 1.4) +
-            geom_point(data = motiondata,
-                       aes(x = time, y = observations),
-                       shape = 21, colour = "white",
-                       fill = "white", size = 6, stroke = 2) +
-            geom_point(data = motiondata,
-                       aes(x = time, y = observations),
-                       shape = 21, colour = "black",
-                       fill = "white", size = 4, stroke = 2) +
-            guides(linetype = guide_legend(keywidth = 2.5, keyheight = 1)) +
-            xlab("Time (sec)") +
-            ylab("Angular position (deg)") +
-            theme_apa() +
-            theme(legend.title=element_blank())
-# p1
 plot_trajectories(motiondata = motiondata)
+
+# motiondata_hidden <- motiondata %>%
+#     gather(type, value = value, -time) %>%
+#     filter(type != "observations") %>%
+#     mutate(type = factor(type,
+#                          levels = c("position",
+#                                     "velocity",
+#                                     "acceleration")))
+# 
+# p1 <- motiondata_hidden %>%
+#         ggplot(aes(x = time, y = value)) +
+#             geom_line(aes(linetype = type), size = 1.4) +
+#             geom_point(data = motiondata,
+#                        aes(x = time, y = observations),
+#                        shape = 21, colour = "white",
+#                        fill = "white", size = 6, stroke = 2) +
+#             geom_point(data = motiondata,
+#                        aes(x = time, y = observations),
+#                        shape = 21, colour = "black",
+#                        fill = "white", size = 4, stroke = 2) +
+#             guides(linetype = guide_legend(keywidth = 2.5, keyheight = 1)) +
+#             xlab("Time (sec)") +
+#             ylab("Angular position (deg)") +
+#             theme_apa() +
+#             theme(legend.title=element_blank())
+# p1
 ```
 
 The key idea is that we can model the dynamics of a system by the evolution of the latent state variables, representing the velocity and position, as a first-order Markov process, where the state at each time point $t$ depends only on the previous state at time $t-1$. This is referred to as the process model. Estimating the velocity $\omega$ and position $\theta$ in discrete time requires writing the kinematic equations as a set of first order difference equations.
@@ -186,7 +189,7 @@ Given a generative model, we can apply various sampling algorithms, either in or
 <!-- ![Graphical model for inferring the 2-dimensional state $x$, consisting of angular velocity and position, based on noisy sensory measurements $y$. ](diagrams/dynamic-belief-network-inference-1.pdf){#fig:graphical-model-inference width=100%} -->
 
 ```{r graphical-model-inference, fig.cap="Graphical model for inferring the 2-dimensional state $x$, consisting of angular velocity and position, based on noisy sensory measurements $y$.", echo=FALSE}
-knitr::include_graphics('diagrams/dynamic-belief-network-inference-1.pdf')
+knitr::include_graphics('diagrams/dynamic-belief-network-inference-1.tiff')
 ```
 
 
@@ -207,7 +210,7 @@ The algorithm starts with a prior distribution of the particles, and at each sub
 <!-- ![Particle filter computations performed at every time step. The cloud of particles (grey circles) represents the current belief state. Initially, a prediction is made for each particle by sampling from the proposal distribution, which is determined by the agent’s kinematic model. This is equivalent to sampling from the prior distribution. Then, during the updating step, an observation  is obtained (shown as a black diamond). Each particle is assigned an importance weight, according to how well it explains the observation. Each particle's diameter reflects its importance weight. Subsequently, a new set of particles is formed by weighted multinomial resampling, with each particle's probability of being chosen proportional to its importance weight. The particle cloud's mean and standard deviation are shown as light grey circles and lines. This resulting cloud of particles represents the posterior distribution. This posterior subsequently forms the prior distribution for the next time step.](diagrams/figure-particle-filter-explained.pdf){#fig:particle-filter-explained width=100%} -->
 
 ```{r particle-filter-explained, fig.cap="Particle filter computations performed at every time step. The cloud of particles (grey circles) represents the current belief state. Initially, a prediction is made for each particle by sampling from the proposal distribution, which is determined by the agent’s kinematic model. This is equivalent to sampling from the prior distribution. Then, during the updating step, an observation  is obtained (shown as a black diamond). Each particle is assigned an importance weight, according to how well it explains the observation. Each particle's diameter reflects its importance weight. Subsequently, a new set of particles is formed by weighted multinomial resampling, with each particle's probability of being chosen proportional to its importance weight. The particle cloud's mean and standard deviation are shown as light grey circles and lines. This resulting cloud of particles represents the posterior distribution. This posterior subsequently forms the prior distribution for the next time step.", echo=FALSE}
-knitr::include_graphics('diagrams/figure-particle-filter-explained.pdf')
+knitr::include_graphics('diagrams/figure-particle-filter-explained.tiff')
 ```
 
 \autoref{fig:passive} shows the result of applying the particle filtering algorithm to the graphical model depicted in \autoref{fig:graphical-model-inference}, in order to infer the velocity and position during a two-second leftward head turn.
@@ -247,14 +250,15 @@ plot(passive_2, panel_label = "", print_loglik = FALSE, predict = FALSE, imagine
 ```
 
 ```{r eval=FALSE, include=FALSE}
-plot_pf_estimates(object = passive, predict = FALSE)
+# plot_pf_estimates(object = passive, predict = FALSE)
 ```
 
 In order to imporove the model, the acceleration can be included in the latent state, resulting in a 3-dimensional latent state variable:
 
-$$\theta_t = \theta_{t-1} + \omega_{t-1} \Delta t + \alpha_{t-1} \frac{1}{2}\Delta t^2$$
+$$ \theta_t = \theta_{t-1} + \omega_{t-1} \Delta t + \alpha_{t-1} \frac{1}{2}\Delta t^2 $$
 
-$$\omega_{t} = \omega_{t-1} + \alpha_{t-1} \Delta t$$
+$$ \omega_{t} = \omega_{t-1} + \alpha_{t-1} \Delta t $$
+
 The effect that this has in terms of the inference algorithm is that the proposal distribution $P(x_t | y_{1:t})$, from which samples are drawn from during the 'predict' step, is improved. By including the acceleration in the latent state, the the changes in velocity are modelled. Of course, the acceleration itself is not modelled, and the changes in acceleration (jerk) are thus treated as random, resuling in a random jerk model.
 
 > QUESTION: shall we show a model that includes acceleration in its state?
@@ -263,7 +267,7 @@ The effect that this has in terms of the inference algorithm is that the proposa
 
 <!-- ## Performance for various types of natural head movements -->
 
-```{r shaking-head, eval=FALSE, fig.cap="Particle filter applied to...", message=FALSE, warning=FALSE, cache=TRUE, include=FALSE}
+```{r shaking-head, eval=FALSE, fig.cap="Particle filter applied to ", message=FALSE, warning=FALSE, cache=TRUE, include=FALSE}
 dt <- 0.1
 head_shaking_data <- generate_data(T = 2, frequency = 2.0,
                              amplitude = 20,
@@ -284,7 +288,7 @@ head_shaking <- run_particle_filter(motiondata = head_shaking_data,
 plot(head_shaking, panel_label = "", print_loglik = FALSE, predict = FALSE, imagine = FALSE)
 ```
 
-```{r two-external-forces, eval=FALSE, fig.cap="Particle filter applied to...", message=FALSE, warning=FALSE, cache=TRUE, include=FALSE}
+```{r two-external-forces, eval=FALSE, fig.cap="Particle filter applied to ", message=FALSE, warning=FALSE, cache=TRUE, include=FALSE}
 dt <- 0.1
 ext_data_1 <- generate_data(T = 4, frequency = 0.7,
                              amplitude = 20,
@@ -321,7 +325,7 @@ In terms of state-space models, this is implemented as a control input $u$, whic
 \autoref{fig:graphical-model-control} shows the resulting graphical model.
 
 ```{r graphical-model-control, fig.cap="Graphical model extended with hierarchical model for self-initiated movements.", echo=FALSE}
-knitr::include_graphics('diagrams/dynamic-belief-network-inference-2.pdf')
+knitr::include_graphics('diagrams/dynamic-belief-network-inference-2.tiff')
 ```
 
 
@@ -337,12 +341,12 @@ Here, we identify the various forms of predictive processing in the context of r
 - Related to Filtering Algorithm
 - Higher-level Priors: The process model determines the kind of motion that is expected. Call this _hypothesis-driven_ sensory inference. It implements an expectation and is a strong prior.
 
-THe brain implements multiple priors:
+The brain implements multiple priors:
 
 - ability to select type of motion
 - parameters of tht motion
 
-control input -> infer the consequences of one's own actions.
+control input allows inferring the consequences of one's own actions.
 
 # Various sources of interference
 Here, we identify various sources of intereference (2-way) between thought (higher-level cognition) and lower-level sensory processing. This interference can be either due to low-level influences in sensory inference, due to priors on higher-level parameters, choice of process model (false expectations of certain type of motion). This is shown by model simulations.
@@ -365,7 +369,7 @@ Interference may the result of either inappropriate priors, leading to a mis-spe
 
 The main results of this study are:
 
-- place the emerging field of vestibular cognition with a framewokk for dynamic probabilistic inference and draw links to established models of sensory processing
+- place the emerging field of vestibular cognition with a framework for dynamic probabilistic inference and draw links to established models of sensory processing
 
 - interpret result from vestibular cognition studies showing interference between thought and perception as being the result of biased sensory processing. This interference can be either due to low-level influences in sensory inference, due to priors on higher-level parameters, choice of process model (false expectations of certain type of motion). This is shown by model simulations.
 
