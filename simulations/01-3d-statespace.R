@@ -39,7 +39,7 @@ prec_p_init <- sd2precision(1)
 
 prec_a <- sd2precision(0.5)
 prec_w <- sd2precision(0.5)
-prec_p <- sd2precision(1.0)
+prec_p <- sd2precision(0.3)
 prec_y <- sd2precision(1.7)
 
 # f_eval <- function(x, k) { .5 * x + 25*x/(1+x^2) + 8*cos(1.2*k) }

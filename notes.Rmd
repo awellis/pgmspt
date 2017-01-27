@@ -9,12 +9,12 @@ output:
 # one
 that the brain is able to imagine, plan, perform counterfactual simulations because it coopts the mechanism evolved in order to predict the sensory consequences of its actions.
 
-interference arises when he brain, due to task demands, uses the control mechanism in a manner which is not entirely counterfactual
+__interference arises when he brain, due to task demands, uses the control mechanism in a manner which is not entirely counterfactual__
 
 # two
-interference is surprising, because a mental simulation should be counterfactual. if it isn't this might be a problem. why should thinking about rotating left have an effect on your ability to sense leftward motion?
+~~Interference is surprising, because a mental simulation should be counterfactual. if it isn't this might be a problem. why should thinking about rotating left have an effect on your ability to sense leftward motion?~~
 
-we show this type of interactions needs to be investigate pdf in a probabilistic framework
+~~we show this type of interactions needs to be investigate pdf in a probabilistic framework~~
 
 # three
 we identify 2 main problem that have not been addressed: in SPT how do people decide which way and for how long to rotate?
@@ -30,7 +30,7 @@ then we explain interference as biased perceptual decision making, concentrating
 # four
 but how does interference through CVS on mental spatial transformation work? We hypothesize that CVS is a strange stimulus and needs interpretation by the brain. Passive actual movement puts the brain in an alert mode, because it might have to counteract the motion, I.e. the control circuits are engaged, leading to less capacity for planning. 
 
-in any case, we need a closer look at the connection between menral simulation and planning and the ability to predict self initiated movements.
+in any case, we need a closer look at the connection between mental simulation and planning and the ability to predict self initiated movements.
 
 # five
 finally, how can we explain the bias in the Nigmatullina experiment? we need to investigate whether it is due to a bias in the starting point, in terms of a traditional method of analyzing such data, i.e. DDM. this is implemented by a prior on the choice alternatives, leading to starting point or altered drift rate. 
