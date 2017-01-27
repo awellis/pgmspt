@@ -49,7 +49,7 @@ we tell the story in two parts.
 
 1) describe how we can simulate using a parsimonious model that refuses components of the sensory inference model and components involved in distinguishing active from passive movements.
 
-2) what happens when we simulate. switch off inputs, sensory gating corresponding to not resampling. show tables of correspondence mechanisms. show that interest,S of probabilistic computations the ability to model sensory consequences is a question of creating a proposal distribution for sampling from the prior. show table comparing Monterey carlo simulation with particle filtering. first show tables explaining components of filtering.
+2) what happens when we simulate. switch off inputs, sensory gating corresponding to not resampling. show tables of correspondence mechanisms. show that interest,S of probabilistic computations the ability to model sensory consequences is a question of creating a proposal distribution for sampling from the prior. show table comparing Monte carlo simulation with particle filtering. first show tables explaining components of filtering.
 
 # eight
 of course we first elucidate how the ability to simulate is related to sensory inference in real time.

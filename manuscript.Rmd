@@ -57,7 +57,7 @@ fig_caption       : true
 lang              : "english"
 class             : "man"
 output:
-     # papaja::apa6_word:
+     # papaja::apa6_word
      papaja::apa6_pdf
         # pandoc_args:
         # - --filter
@@ -114,18 +114,18 @@ As demonstrated by @Penny:2013iv, these computations can be performed in a commo
 <!-- [ok] -->
 Simulating the behaviour of a dynamical system using a forward model requires a generative model of the system. 
 
-The aim of this paper is to specifically investigate the generative model that may be used for mental spatial transformations. The ability to run embodied simulations is often claimed to be grounded in the relevant sensorimotor circuits, and we claim that the vestibular system is ideally suited to investigate this connection, because the generative models used by the vestibular system for dynamic sensory inference have been extensively investigated using approaches from optimal control theory, and more recently, dynamic Baysian inference [Oman, CITATIONS, @PaulRMacNeilage:2008bv]. 
+The aim of this paper is to specifically investigate the generative model that may be used for mental spatial transformations. The ability to run embodied simulations is often claimed to be grounded in the relevant sensorimotor circuits, and we claim that the vestibular system is ideally suited to investigate this connection, because the generative models used by the vestibular system for dynamic sensory inference have been extensively investigated using approaches from optimal control theory, and more recently, dynamic Bayesian inference [Oman, CITATIONS, @PaulRMacNeilage:2008bv]. 
 
 The vestibular system faces a number of challenges in interpreting the sensory measurements provided by the semi-circular canals (SCC) and otolith organs. On the one hand, these signals  are very noisy, and ambiguous; the otoliths respond both to translations and tilt of the head relative to gravity, and in order to disambiguate between translation and tilt, the brain must perform sophisticated computations. The emerging picture is that the nature of these computations is probabilistic, and that the brain makes use of strong prior beliefs in order to interpret these sensory signals [Mittelstaedt, etc]. A further challenge faced by the vestibular system is that it needs to distinguish between sensory signals that are the result of active motion, and those resulting from external forces [@Cullen:2009dc, @Cullen:2014gx]. The ability to distinguishing re-afferent from ex-afferent sensory signals is an essential capability of all organisms that move actively [@Crapse:2008jc].
 
 Furthermore, the apparent connection between mental imagery and predictive processing has repeatedly been alluded to [@Moulton:2009ij, @Clark:2012vf, @Gambi:2015gv], and @Grush:2004wx claims that mental imagery is performed by emulator circuits implementing a forward model. These ideas can also be addressed from a computational point of view in the context of dynamic Bayesian inference, where there are multiple roles for sensory predictions, over different time scales. This was recently discussed by [@Tian:2012ui] in the context of imagined speech. 
 <!-- [ok] -->
-The putative link between predictive processing and higher cognitive processing has a firm basis in predictive processing accounts of sensory inference [Friston]. The predictive processing framework has been applied to almost all sensory modalities [CITATIONS: pain, proprioception, auditory , visual, etc.], and the picture that has emerged in recent years is that the brain employs sophisticated inference algorithms in order to "interpret" the stream of incoming sensory data. The brain seems to be actively engaged in formulating hypotheses, and testing these on sensory data; this has been extended to the concept of active inference [Friston], in which an agent attempts to either change it's internal model of world, or to interven on the world in order to fulfil sensory predictions. 
+The putative link between predictive processing and higher cognitive processing has a firm basis in predictive processing accounts of sensory inference [Friston]. The predictive processing framework has been applied to almost all sensory modalities [CITATIONS: pain, proprioception, auditory , visual, etc.], and the picture that has emerged in recent years is that the brain employs sophisticated inference algorithms in order to "interpret" the stream of incoming sensory data. The brain seems to be actively engaged in formulating hypotheses, and testing these on sensory data; this has been extended to the concept of active inference [Friston], in which an agent attempts to either change it's internal model of world, or to intervene on the world in order to fulfill sensory predictions. 
 
-We claim that the vestibular modality is particularly well-suited to investigating predictive processing at multiple hierarchical scales, from the lowest levels of sensory inference to higher levels, where goals, intentions and beliefs of the organism become relevant. A case in point is the study by @Wertheim:2001cb, who provided evidence that participants' perceptions of tilt induced by vestibular stimulation are shaped to a large extent by the beliefs about possible motions they formed prior to taking part in the experiement.
+We claim that the vestibular modality is particularly well-suited to investigating predictive processing at multiple hierarchical scales, from the lowest levels of sensory inference to higher levels, where goals, intentions and beliefs of the organism become relevant. A case in point is the study by @Wertheim:2001cb, who provided evidence that participants' perceptions of tilt induced by vestibular stimulation are shaped to a large extent by the beliefs about possible motions they formed prior to taking part in the experiment.
 <!-- [ok] -->
 
-Interference effects between higher-level cognitive processes, such as SPT and mental imagery, and sensory inference, are thought to occur as a result of shared circuitry [@Deroualle:2014ho, @Nigmatullina:2015gh]. However, the precise nature of such interactions, and what exaclty might be shared, is left unspecified. At first glance, it appear unlikely that such interference should be possible, as low levels of vestibular processing appear to be cognitively impenetrable [CITATION]. In particular, @Nigmatullina:2015gh found that the onset of the vestibulo-ocular reflex (VOR) was earlier when the direction of an imagined self-rotation was congruent with the direction of a subsequently experienced rotation. The VOR, however, must be susceptible to the influence of intentions and goals; for example, if a person intends to fixate a target during a movement, the VOR should be cancelled. Thus, seemingly reflexive, and impenetrable, motor actions require a large amount of flexibility based on top-down information. Even accepting the fact that low level sensorimotor processing may be more cognitively penetrable than previously thought, the fact that imagining a rotation of the self should have an effect on a person's ability to detect rotations, or to discriminiate between directions of rotation, still requires an explanation.
+Interference effects between higher-level cognitive processes, such as SPT and mental imagery, and sensory inference, are thought to occur as a result of shared circuitry [@Deroualle:2014ho, @Nigmatullina:2015gh]. However, the precise nature of such interactions, and what exactly might be shared, is left unspecified. At first glance, it appear unlikely that such interference should be possible, as low levels of vestibular processing appear to be cognitively impenetrable [CITATION]. In particular, @Nigmatullina:2015gh found that the onset of the vestibulo-ocular reflex (VOR) was earlier when the direction of an imagined self-rotation was congruent with the direction of a subsequently experienced rotation. The VOR, however, must be susceptible to the influence of intentions and goals; for example, if a person intends to fixate a target during a movement, the VOR should be cancelled. Thus, seemingly reflexive, and impenetrable, motor actions require a large amount of flexibility based on top-down information. Even accepting the fact that low level sensorimotor processing may be more cognitively penetrable than previously thought, the fact that imagining a rotation of the self should have an effect on a person's ability to detect rotations, or to discriminate between directions of rotation, still requires an explanation.
 
 > NOTE: we need to include all studies demonstrating interference, especially in the direction cognition -> inference (Nigmatullina effect)
 
@@ -144,7 +144,7 @@ Probabilistic graphical models are able to represent hierarchically structured k
 
 In this paper, we focus specifically on the role of the vestibular system for spatial perspective transformations, and we draw the link between probabilistic computations performed by the vestibular system, and the brain's ability to run mental simulations for the purpose of adopting the perspective of another person.
 
-We proceed by introducing recent models of Bayesian inference for real-time, dynamic sensory processing of vestibular data, based on particle filters [@Laurens:2006be, @Karmali:2012cv], and we reframe these as probabilistic graphical models. This allows us to investigate the generative model separately from the algorithm used for inference, and we then extend the basic model for sensory inference in order to focus specifically on the ability to model the consequences of self-initiated, active movements. This is an implementation of the idea that information about motor commands are projected to sensory areas by means of an efference copy, based on which a forward model then computes the sensory consequences. Our aims are to:
+We proceed by introducing recent models of Bayesian inference for real-time, dynamic sensory processing of vestibular data, based on particle filters [@Laurens:2006be, @Karmali:2012cv], and we re-frame these as probabilistic graphical models. This allows us to investigate the generative model separately from the algorithm used for inference, and we then extend the basic model for sensory inference in order to focus specifically on the ability to model the consequences of self-initiated, active movements. This is an implementation of the idea that information about motor commands are projected to sensory areas by means of an efference copy, based on which a forward model then computes the sensory consequences. Our aims are to:
 
 1) identify various forms of predictive processing in the context of dynamic sensory processing.
 2) identify various sources of interference between higher-level cognition and lower-level sensory processing.
@@ -162,19 +162,21 @@ Following @Karmali:2012cv, we focus on one specific type of head movement, a rot
 
 ## Previous work
 Whereas early models of vestibular sensory processing were inspired by control theory [@Borah:1988fd, @Merfeld:1999cg], several recent studies have described vestibular sensory processing as dynamic Bayesian inference [@Laurens:2006be, @PaulRMacNeilage:2008bv, @Karmali:2012cv]. @Selva:2012gsa
-provide a recent review of the relationship between optimal observer models and models that employ Kalman filtering, and show that these are largely equivalent. Both @Karmali:2012cv and @Laurens:2006be described vestibular sensory inference in terms of particle filtering, which is a particular algorithm that can be used to perform inference in state-space models. [@Doucet:2000bh, @Doucet:2009us]. Using their model, @Laurens:2006be were able to simulate perceptual responses to centrifugation and off-vertical axis rotations. A well-known phenomenon of vestibular perception is velocity storage, which is defined as the slower decay of perceptual and oculomotor responses, relative to the SCC afferent responses [@Raphan:1979hn], __[Robinson 1977]__. This is generally seen as evidence for the existence of an internal model in the processing of vestibular signals. @Karmali:2012cv focussed on one-dimensional angular velocity during yaw rotations; their model was able to explain the phenomenon of velocity storage as a consequence of particle filtering, with the time constant of velocity storage depending on the noise of the sensory afferent signals.
+provide a recent review of the relationship between optimal observer models and models that employ Kalman filtering, and show that these are largely equivalent. Both @Karmali:2012cv and @Laurens:2006be described vestibular sensory inference in terms of particle filtering, which is a particular algorithm that can be used to perform inference in state-space models. [@Doucet:2000bh, @Doucet:2009us]. Using their model, @Laurens:2006be were able to simulate perceptual responses to centrifugation and off-vertical axis rotations. A well-known phenomenon of vestibular perception is velocity storage, which is defined as the slower decay of perceptual and oculomotor responses, relative to the SCC afferent responses [@Raphan:1979hn], __[Robinson 1977]__. This is generally seen as evidence for the existence of an internal model in the processing of vestibular signals. @Karmali:2012cv focused on one-dimensional angular velocity during yaw rotations; their model was able to explain the phenomenon of velocity storage as a consequence of particle filtering, with the time constant of velocity storage depending on the noise of the sensory afferent signals.
 
 ## Generative model for sensory inference
-We proceed by providing a brief introduction to the concept of state-space models, and particle filtering, which is a particular algorithm that can be used to perform inference in state-space models. State-space models can be seen as special cases of more general Bayesian hierarchical models [@Bishop:2006ui; @Murphy:2012ua]. Following the same approach as @Penny:2013iv, we first reframe the generative model used for sensory inference as a dynamic probabilistic graphical model, which is suitable for modelling the time-varying behaviour of a system in terms of latent, unobservable processes and noisy observations.
+We proceed by providing a brief introduction to the concept of state-space models, and particle filtering, which is a particular algorithm that can be used to perform inference in state-space models. State-space models can be seen as special cases of more general dynamic probabilistic graphical models [@Bishop:2006ui; @Murphy:2012ua], and are suitable for modelling the time-varying behaviour of a system in terms of a latent, unobservable process and noisy measurements.
 
-For example, consider trying to estimate the velocity and position during a leftward head turn. The afferent SCC signals are considered to be proportional to the angular velocity of the head with a frequency band of approximately 0.1 – 10 Hz, which constitutes the range of natural head movements [@Grabherr:2008kk; @Carriot:2014fv]. The measurements are therefore observations of the true, unobservable angular velocity; however, they are contaminted by Gaussian noise, which is determined by characteristics of the sensory organs. Figure \@ref(fig:head-turn-data) shows a sequence of noisy measurements during a two-second turn of the head. The acceleration generating the movement is sinusoidal, given for each time step $t$ by $Asin(2\pi t/T)$, where $A$ is the amplitude of the movement, $T = 1/f$ is the duration of the movement, and $f$ is the frequency. This acceleration results in a peak velocity $\omega_{peak} = AT/\pi$ and a final angular position $\theta_{final} = AT^2/2\pi$.  Particle filtering provides a means of filtering out the noise inherent in the measurements, and allows estimation of evolution of the unobservable, latent state variables.
+For example, consider trying to estimate the velocity and position during a leftward head turn. In this case, the latent process provides a model of the kinematics of the system, and the measurement model describes how the afferent SCC signals are generated, dependent on the kinematics.
 
-```{r head-turn-data, echo=FALSE, fig.cap= "Sensory measurements obtained during a short leftward head turn. The goal is to infer the latent angular velocity and position, based on the noisy measurements. \\label{fig:head-turn}", message=FALSE, warning=FALSE, dpi=100}
+The SCC signals are considered to be proportional to the angular velocity of the head within a frequency band of approximately 0.1 – 10 Hz, which constitutes the range of natural head movements [@Grabherr:2008kk; @Carriot:2014fv]. These measurements, however, are contaminated by Gaussian noise, which is determined by characteristics of the sensory organs. Figure \@ref(fig:head-turn-data) shows a sequence of noisy measurements during a two-second leftward turn of the head. The acceleration generating the movement is sinusoidal, given for each time step $t$ by $Asin(2\pi t/T)$, where $A$ is the amplitude of the movement, $T = 1/f$ is the duration of the movement, and $f$ is the frequency. This acceleration results in a half-cycle cosine velocity profile, with a peak velocity $\omega_{peak} = AT/\pi$ and a final angular position $\theta_{final} = AT^2/2\pi$.  Particle filtering provides a means of filtering out the noise inherent in the measurements, and allows estimation of evolution of the unobservable, latent state variables.
+
+```{r head-turn-data, echo=FALSE, fig.cap= "Sensory measurements obtained during a short leftward head turn. The goal is to infer the latent angular velocity and position, based on the noisy measurements.", message=FALSE, warning=FALSE, dpi=100}
 dt <- 0.1
 motiondata <-  generate_data(T = 2, frequency = 0.5,
                              amplitude = 20,
                              sensor_sd = 2.0)
-plot_trajectories(motiondata = motiondata)
+# plot_trajectories(motiondata = motiondata)
 
 motiondata_hidden <- motiondata %>%
     gather(type, value = value, -time) %>%
@@ -183,6 +185,9 @@ motiondata_hidden <- motiondata %>%
                          levels = c("position",
                                     "velocity",
                                     "acceleration")))
+df_tmp <- data_frame(time = motiondata$time,
+                     observations = motiondata$observations)
+df_tmp$param <- as.factor("Measurements")
 
 p1 <- motiondata_hidden %>%
         ggplot(aes(x = time, y = value)) +
@@ -191,38 +196,49 @@ p1 <- motiondata_hidden %>%
                        aes(x = time, y = observations),
                        shape = 21, colour = "white",
                        fill = "white", size = 6, stroke = 2) +
-            geom_point(data = motiondata,
-                       aes(x = time, y = observations),
-                       shape = 21, colour = "black",
+            geom_point(data = df_tmp,
+                       aes(x = time, y = observations, shape = param),
+                       colour = "black",
                        fill = "white", size = 4, stroke = 2) +
             guides(linetype = guide_legend(keywidth = 2.5, keyheight = 1)) +
+            scale_shape_manual(name = element_blank(),
+                               labels = "Measurements",
+                               values = 21) +
             xlab("Time (sec)") +
             ylab("Angular position (deg)") +
             theme_apa() +
-            theme(legend.title=element_blank())
+            theme(legend.title=element_blank(), 
+                  panel.border = element_blank(), 
+                  axis.line = element_line(colour="black", 
+                                           size = 0.75, lineend="square"))
 p1
 ```
 
-The key idea is that we can model the dynamics of a system by the evolution of the latent state variables, representing the velocity and position, as a first-order Markov process, where the state at each time point $t$ depends only on the previous state at time $t-1$. This is referred to as the process model. Estimating the velocity $\omega$ and position $\theta$ in discrete time requires writing the kinematic equations as a set of first order difference equations.
+The dynamics of the system can be modelled by the evolution of the 3-d latent state variable, representing the position, velocity and acceleration, as a first-order Markov process, where the state at each time point $t$ depends only on the previous state at time $t-1$. This is referred to as the process model. Estimating the position $\theta$, velocity $\omega$ and acceleration $\alpha$ in discrete time requires writing the kinematic equations as a set of first order difference equations.
 
-$$\theta_t = \theta_{t-1} + \omega_{t-1} \Delta t$$
-$$\omega_{t} = \omega_{t-1}$$
+$$\theta_t = \theta_{t-1} + \omega_{t-1} \Delta t + \alpha_{t-1} \frac{1}{2} \Delta t^2$$
+$$\omega_{t} = \omega_{t-1} + \alpha_{t-1} \Delta t$$
+$$\alpha_t = \alpha_{t-1}$$ 
 
-Note that we have omitted the acceleration from the process model, for the sake of simplicity; this amounts to assuming a constant velocity model, which just means that we expect the current velocity to be same as the previous velocity. These kinematic equations form a linear model, and could optionally be written in matrix notation. For further simplicity, we retain the current notation. Next, we consider the measurements at each time step $t$ as depending only on the current state. This simply implements the idea that the sensory signal depends only on the current head velocity. The above equations represent the expected values of the state and observation variables. In order to complete the generative model, we require a description of the stochastic nature dependancies. We model both process and measurement noise a being normally distributed, leading to the following linear Gaussian state-space model:
+This model assumes a constant acceleration. These kinematic equations form a linear model, and could optionally be written in matrix notation. For simplicity, we retain the current notation. Next, we consider the measurements at each time step $t$ as depending only on the current state. This simply implements the idea that the sensory signal depends only on the current head velocity. The above equations represent the expected values of the state and observation variables. In order to complete the generative model, we require a description of the stochastic nature of the dependencies. We model both process and measurement noise as being normally distributed, leading to the following linear Gaussian state-space model:
 
 $$x_t = f(x_{t-1}, \epsilon)$$
 $$y_{t} = g(x_t, \delta)$$
-$$\epsilon \sim N(0, \sigma^2_\epsilon) $$
-$$\delta \sim N(0, \sigma^2_\delta) $$
+$$\epsilon \sim N(0, \sigma^2_\epsilon)$$
+$$\delta \sim N(0, \sigma^2_\delta)$$
+<!-- TODO: it is better to start with the generative model, f() and g(), and then implement the state space description -->
+where the state variable $x_t$ consists of the position $\theta_t$, velocity $\omega_t$ and acceleration $\alpha_t$, and $y_{t}$ denotes the sensory measurement.
+<!-- [^sensormodel]  -->
+$\epsilon$ and $\delta$ are zero-mean Gaussian noise terms with variances $\sigma^2_\epsilon$ and $\sigma^2_\delta$. These refer to the process and measurement noise, respectively. The process noise represents the uncertainty in the dependence of the current state on the previous state; under the constant velocity assumption, the process noise must be large enough if the model is to allow for change in velocity due to unmodelled acceleration. Note that the measurement noise is a model of the noise characteristics of the sensor, and not a physical property of the sensor itself. The function $f$ and $g$ represent the process transition function and the measurement function, respectively. 
+<!-- In the case of a linear dynamical system, the transition function can be written as: -->
+<!-- $$x_t \sim N(Ax_{t-1}), \epsilon^2)$$, -->
+<!-- where the matrix $A$ replaces the transition function $f$. -->
 
-where the state variable $x_t$ consists of both the velocity $\omega_t$ and position $\theta_t$, and $y_{t}$ denotes the sensory measurement.[^sensormodel] $\epsilon$ and $\delta$ are zero-mean Gaussian noise terms with variances $\sigma^2_\epsilon$ and $\sigma^2_\delta$. These refer to the process and measurement noise, respectively. The process noise represents the uncertainty in the dependance of the current state on the previous state; under the constant velocity assumption, the process noise must be large enough if the model is to allow for change in velocity due to unmodelled acceleration. Note that the measurement noise is a model of the noise characteristics of the sensor, and not a physical property of the sensor itself. The function $f$ and $g$ represent the process transition function and the measurement function, respectively. In the case of a linear dynamical system, the transition function can be written as:
-$$x_t \sim N(Ax_{t-1}), \epsilon^2)$$,
-where the matrix $A$ replaces the transition function $f$.
-
-[^sensormodel]: Note that we although both @Laurens:2006be, @Karmali:2012cv consider a realistic sensor model, for simplicity, we implement the sensor as being a noisy realisation of the velocity. Our model is not intended to be a realistic model of the SCC; rather, we focus on the probabilistic computations relevant for higher-level cognition.
+<!-- [^sensormodel]: Note that we although both @Laurens:2006be, @Karmali:2012cv consider a realistic sensor model, for simplicity, we implement the sensor as being a noisy realisation of the velocity. Our model is not intended to be a realistic model of the SCC; rather, we focus on the probabilistic computations relevant for higher-level cognition. -->
 
 <!-- \autoref{fig:graphical-model-inference} -->
-Figure \@ref(fig:graphical-model-inference) shows a representation of a state-space model as a graphical model, unrolled over multiple time steps. Starting at time 0, the state evolves according to the process model, with the measurements at each time step being generated according to the measurement model. The 2-dimensiontal latent state variable is unshaded, to indicate that it cannot be observed, wheres the observed sensory measurements are shaded. Whereas previous models were discussed in terms of the particular filtering algorithm used, the graphical notation highlights the fact that a state-space model can be viewed as a dynamic latent factor model [@Blei:2014cp]. This opens up the possibility of extending the graphical model to include higher-level variables. 
+Figure \@ref(fig:graphical-model-inference) shows a representation of a state-space model as a graphical model, unrolled over multiple time steps. The state evolves according to the process model, with the measurements at each time step being generated according to the measurement model. The 3-dimensional latent state variable is unshaded, to indicate that it cannot be observed, wheres the observed sensory measurements are shaded. 
+<!-- Whereas previous models were discussed in terms of the particular filtering algorithm used, the graphical notation highlights the fact that a state-space model can be viewed as a dynamic latent factor model [@Blei:2014cp]. This opens up the possibility of extending the graphical model to include higher-level variables.  -->
 Given a generative model, we can apply various sampling algorithms, either in order to run a Monte Carlo simulation by sampling from the prior without incorporating any observed variables, or to perform inference, by conditioning on observed variables. After a brief discussion particle filtering, an inference algorithm often used to infer the values of the latent state variables, we will introduce our extension to the model that will allow a prediction of the consequences of active movements.
 
 <!-- ![Graphical model for inferring the 2-dimensional state $x$, consisting of angular velocity and position, based on noisy sensory measurements $y$. ](diagrams/dynamic-belief-network-inference-1.png){#fig:graphical-model-inference width=100%} -->
@@ -234,13 +250,12 @@ knitr::include_graphics('diagrams/dynamic-belief-network-inference-1.png')
 
 ## Bayesian inference using particle filtering
 
-We give a brief overview of particle filtering, an sequential Monte Carlo algorithm for performing approximate Bayesian inference in a graphical model. We descibe a simple bootstrap particle filter, concentrating on those aspects most relevant for this study. For a more thorough treatment, see @Doucet:2000bh and @Doucet:2009us. @Speekenbrink:2016kc provides a recent review with applications in psychological research. Particle filtering is . It proceeds by recursively estimating the distribution of the current state, $P(x_t | y_{1:t})$, as a function of its parent nodes, conditional upon the sequence of measurements $y_{1:t}$. The distributions are represented by a collection of discrete weighted samples, known as particles. 
+We give a brief overview of particle filtering, a sequential Monte Carlo algorithm for performing approximate Bayesian inference in a graphical model. We describe a simple bootstrap particle filter, concentrating on those aspects most relevant for this study. For a more thorough treatment, see @Doucet:2000bh and @Doucet:2009us. @Speekenbrink:2016kc provides a recent review with applications in psychological research. Particle filtering proceeds by recursively estimating the distribution of the current state, $P(x_t | y_{1:t})$, as a function of its parent nodes, conditional upon the sequence of measurements $y_{1:t}$. The distributions are represented by a collection of discrete weighted samples, known as particles. 
 
 The general procedure for recursive Bayesian inference is to start from an initial prior distribution, and the to perform alternating prediction and updating steps. In other words: first, a hypothesis about the expected state is generated, and then this hypothesis is tested by evaluating how well it predicts the data. 
-The algorithm starts with a prior distribution of the particles, and at each subsequent time step, proceeds by first sampling from the so-called proposal distribution $P(x_t | y_{1:t-1})$, which is based on the specific choice of transition function, and therefore reflects the probabilistic causal model of the sensory measurements. Next, during the updating step, the current measurement is incorporated by evaluating the likelihood, $P(y_t | x_t)$, which gives the probability of observing the measurement for each individual particle. The particle are then assigned an importance weight, based on how well they predicted the measurement. A common problem in  sequential Monte Carlo methods is that the particle weights tend to become very small over time; this is known as the degeneracy problem. In order to counteract this, multinomial resampling is performed when effective sample size falls under a threshold. A new set of particles is then chosen by weighted sampling with replacement, which each particle’s probability of being selected given by its importance weight. Resampling ensures that only particles with a relatively large probability of ‘explaining’ the observations are maintained. This introduces flexibility in the algorithm’s method for incorporating evidence into its beliefs about the latent states.
+The algorithm starts with a prior distribution of the particles, and at each subsequent time step, proceeds by first sampling from the proposal distribution $P(x_t | y_{1:t-1})$, which is based on the specific choice of transition function. Next, during the updating step, the current measurement is incorporated by evaluating the likelihood, $P(y_t | x_t)$, which gives the probability of observing the measurement for each individual particle. The particle are then assigned an importance weight, based on how well they predicted the measurement. A common problem in  sequential Monte Carlo methods is that the particle weights tend to become very small over time; this is known as the degeneracy problem. In order to counteract this, multinomial resampling is performed when effective sample size falls under a threshold. A new set of particles is then chosen by weighted sampling with replacement, which each particle’s probability of being selected given by its importance weight. Resampling ensures that only particles with a relatively large probability of ‘explaining’ the observations are maintained. This introduces flexibility in the algorithm’s method for incorporating evidence into its beliefs about the latent states.
 
-
-Figure \@ref(fig:particle-filter-explained) shows a visualization of the computations performed by a particle filter at each time step, in order to track the angular velocity. Initially, the particles are propagated forwards in time according to the proposal distribution. They are equally weighted, indicated by their diameters. During the update step, the particle are reweighted, with each particle’s weights reflecting how well it explains the measurement. This is visualized by the change in diameter; those particles lying close to the observation (sensory input from the horizontal canal) have a larger diameter. After resampling, the new set of particles is pulled towards the measurement, and the weights are reset. This adjustment toward the observation depends on both the process noise, and the modelled sensor noise. The uncertainty of the belief, as indicated by the particle cloud's standard deviation (light grey lines), increases at every prediction step, and subsequently decreases after updating. This cycle of prediction, updating and resampling ensures that the collection of particles comes to represent the 'true' filtering distribution, by eliminating those particles with low weights. The particle filter represents all beliefs in the form of probability distributions; the mean and variance of the belief distribution can be computed at each time step, and the logarithm of the weights $log(\frac{1}{N}\sum^N_{i=1}w_i)$, averaged over all $N$ particles, may be summed over all time steps in order to compute the log-likelihood $\sum^T_{t=1}\Big[log(\sum^N_{i=1}w_i) - log(N)\Big]$, which can be used in order to evaluate how well the model was able to fit the sensory evidence. The summed log-likelihood can be used for parameter estimation in extensions of the basic particle filtering algorithm [@Andrieu:2010gc].
+Figure \@ref(fig:particle-filter-explained) shows a visualization of the computations performed by a particle filter at each time step, in order to track the angular velocity. Initially, the particles are propagated forwards in time according to the proposal distribution. They are equally weighted, indicated by their diameters. During the update step, the particle are re-weighted, with each particle’s weights reflecting how well it explains the measurement. This is visualized by the change in diameter; those particles lying close to the observation (sensory input from the horizontal canal) have a larger diameter. After resampling, the new set of particles is pulled towards the measurement, and the weights are reset. This adjustment toward the observation depends on both the process noise, and the modelled sensor noise. The uncertainty of the belief, as indicated by the particle cloud's standard deviation (light grey lines), increases at every prediction step, and subsequently decreases after updating. This cycle of prediction, updating and resampling ensures that the collection of particles comes to represent the 'true' posterior distribution, by eliminating those particles with low weights. The particle filter represents all beliefs in the form of probability distributions; the mean and variance of the belief distribution can be computed at each time step, and the logarithm of the weights $log(\frac{1}{N}\sum^N_{i=1}w_i)$, averaged over all $N$ particles, may be summed over all time steps in order to compute the log-likelihood $\sum^T_{t=1}\Big[log(\sum^N_{i=1}w_i) - log(N)\Big]$, which can be used in order to evaluate how well the model was able to fit the sensory evidence. The summed log-likelihood can be used for parameter estimation in extensions of the basic particle filtering algorithm [@Andrieu:2010gc].
 
 
 <!-- By recursively estimating the current state, the observations can be processed continuously; thus, the agent does not need to store the entire history of observations – only the previous belief state estimate and the current observation are needed in order to estimate the current state. At time step t, the agent observes the value of , and this observation is used to update the previous belief: -->
@@ -252,212 +267,31 @@ Figure \@ref(fig:particle-filter-explained) shows a visualization of the computa
 knitr::include_graphics('diagrams/figure-particle-filter-explained.png')
 ```
 
-Figure \@ref(fig:passive) shows the result of applying the particle filtering algorithm to the graphical model depicted in Figure \@ref(fig:graphical-model-inference), in order to infer the velocity and position during a two-second leftward head turn.
+Figure \@ref(fig:3d-statespace-fits) (a) shows the result of applying the particle filtering algorithm to the graphical model depicted in Figure \@ref(fig:graphical-model-inference) and simulated measurements, in order to infer the velocity and position during a two-second leftward head turn. The acceleration is also inferred, but is not of interest.
 
-```{r passive, cache=TRUE, fig.cap="Particle filter for inferring velocity and position during a two-second head turn.", echo=FALSE, message=FALSE, warning=FALSE}
-params <- list(sdx = c(0.8, 0.8) * eye(2), sdy = 2.0,
-                x_init = c(0, 0),
-                sdx_init = 0.5*eye(2),
-                A = 20, N = 1000,
-                dt = 0.1, freq = 0.5,
-                transfun = transfun)
+```{r 3d-statespace, fig.cap="Particle filter with a 3-d state for inferring velocity and position during a two-second head turn.", message=FALSE, warning=FALSE, include=FALSE}
 
-passive <- run_particle_filter(motiondata = motiondata, params = params,
-                            resample_particles = TRUE, rs_thresh = 0.5,
-                            selfmotion = "passive")
+load("simulations/model-fits/m1_3d_head_turn.Rda")
 
-plot(passive, panel_label = "", print_loglik = FALSE, predict = FALSE, imagine = FALSE)
-```
-
-The measurement are shown as squares, and the true velocity that generated the data is shown as a dotted line. This velocity is the result of an external force being applied. The solid lines depict the estimated velocity (left) and position (right), and the shaded areas show the $95\%$ credible intervals. The model is able to estimate the latent state despite making the assumption that the velocity is constant. It does this by allowing for random changes in velocity by letting the process noise be sufficiently large. Note that both velcoity and position estimates lag the true values; this is due the fact that the acceleration is not modelled explicitely, and thus the system is slow to react to changes in velocity.
-
-This graphical model assumes that the velocity is constant, and does not  the explicitly estimate acceleration; however, it allows for random changes in its velocity by in terms of the process noise. The estimation can be improved by increasing the process noise. Figure \@ref(fig:passive-2) shows the resulting estimates. Whilst the lag is somewhat reduced, a consequence of increasing the process noise is that the measurement are given more weight, resulting in a tendency to overfit the noise in the measurements. The constant velocity (random acceleration) model is unable to capture the underlying smooth trajectory of the velocity and position, instead showing random jumps in the velocity estimate.
-
-```{r passive-2, cache=TRUE, fig.cap="Particle filter for inferring velocity and position during a two-second head turn with increased process noise.", echo=FALSE, message=FALSE, warning=FALSE}
-params <- list(sdx = c(1.8, 1.8) * eye(2), sdy = 2.0,
-                x_init = c(0, 0),
-                sdx_init = 0.5*eye(2),
-                A = 20, N = 1000,
-                dt = 0.1, freq = 0.5,
-                transfun = transfun)
-
-passive_2 <- run_particle_filter(motiondata = motiondata, params = params,
-                            resample_particles = TRUE, rs_thresh = 0.5,
-                            selfmotion = "passive")
-
-plot(passive_2, panel_label = "", print_loglik = FALSE, predict = FALSE, imagine = FALSE)
-```
-
-```{r eval=FALSE, include=FALSE}
-# plot_pf_estimates(object = passive, predict = FALSE)
-```
-
-In order to imporove the model, the acceleration can be included in the latent state, resulting in a 3-dimensional latent state variable:
-
-$$ \theta_t = \theta_{t-1} + \omega_{t-1} \Delta t + \alpha_{t-1} \frac{1}{2}\Delta t^2 $$
-
-$$ \omega_{t} = \omega_{t-1} + \alpha_{t-1} \Delta t $$
-$$ \alpha_t = \alpha_{t-1} $$
-
-The effect that this has in terms of the inference algorithm is that the proposal distribution $P(x_t | y_{1:t})$, from which samples are drawn from during the 'predict' step, is improved. By including the acceleration in the latent state, the the changes in velocity are modelled. Of course, the acceleration itself is not modelled, and the changes in acceleration (jerk) are thus treated as random, resuling in a random jerk model.
-
-> QUESTION: shall we show a model that includes acceleration in its state?
-
-How do we explain higher-level anticipation/expectations in such a model? This form of anticipation is not the same as the 1-step ahead predictions made during inference, but rather implement higher level prior beliefs about the direction of movement, for example.
-
-An obvious way of including this is the mechanism that allows one to predict the sensory consequences of self-initiated movement via an efference copy.
-
-<!-- ## Performance for various types of natural head movements -->
-
-```{r shaking-head, eval=FALSE, fig.cap="Particle filter applied to ", message=FALSE, warning=FALSE, cache=TRUE, include=FALSE}
-dt <- 0.1
-head_shaking_data <- generate_data(T = 2, frequency = 2.0,
-                             amplitude = 20,
-                             sensor_sd = 2.0)
-
-# plot_trajectories(motiondata = abrupt_stop_data)
-params <- list(sdx = c(0.8, 0.8) * eye(2), sdy = 2.0,
-                x_init = c(0, 0),
-                sdx_init = 0.5*eye(2),
-                A = 20, N = 1000,
-                dt = 0.1, freq = 0.5,
-                transfun = transfun)
-
-head_shaking <- run_particle_filter(motiondata = head_shaking_data, 
-                                    params = params,
-                                    selfmotion = "passive")
-
-plot(head_shaking, panel_label = "", print_loglik = FALSE, predict = FALSE, imagine = FALSE)
-```
-
-```{r two-external-forces, eval=FALSE, fig.cap="Particle filter applied to ", message=FALSE, warning=FALSE, cache=TRUE, include=FALSE}
-dt <- 0.1
-ext_data_1 <- generate_data(T = 4, frequency = 0.7,
-                             amplitude = 20,
-                             sensor_sd = 2.0)
-ext_data_2 <- generate_data(T = 4, frequency = 0.5,
-                             amplitude = -5,
-                             sensor_sd = 2.0)
-superposition_data <- ext_data_1 + ext_data_2
-
-# plot_trajectories(motiondata = abrupt_stop_data)
-params <- list(sdx = c(0.8, 0.8) * eye(2), sdy = 2.0,
-                x_init = c(0, 0),
-                sdx_init = 0.5*eye(2),
-                A = 20, N = 1000,
-                dt = 0.1, freq = 0.5,
-                transfun = transfun)
-
-superposition <- run_particle_filter(motiondata = superposition_data, 
-                                    params = params,
-                                    selfmotion = "passive")
-
-plot(superposition, panel_label = "", print_loglik = FALSE, predict = FALSE, imagine = FALSE)
-```
-
-
-
-# Extension allowing the prediction of active movements
-While the model described above can be used in order to track the behaviour of a dynamic system by including the acceleration as a latent state, it does not include any means of incorporating an active prediction of the kinematics. During sensory inference the measurements are incorporated, and and a posterior estimate of the latent state is obtained by updating the prior with the likelihood. The underlying kinematic model thus relies on the sensory data to inform its estimates. While this model is perfectly suitable for sensory inference, for the task of predicting the sensory consequences of self-initiated movemenents, the model is inadequate, as it does not allow including further knowledge about kinematics, which can be used to improve the proposal distribution. This knowledge is obtained by means of an efference copy of executed or planned motor commands, which is sent to a forward model. The forward model must then translate the information from the efference copy in a format that is suitable for the sensory system. 
-
-__A further issue is that the sensory inference model cannot incorporate any top-down expectations or biases. For example, imagine seeing that someone is going to push you. You can use this information, derived from the visual modality, in order prepare yourself in order to compensate for this. However, you do not want to act too early, but rather wait until you are actually moving.__
-
-In terms of state-space models, this is implemented as a control input $u$, which extends the graphical model shown in Figure \@ref(fig:graphical-model-inference). In this model, the estimated acceleration is replaced by an known acceleration signal. This capability to predict the consequences of self-initiated movements is essential in order to distinguish re-afference from ex-afference - the system has knowledge about how it moves, and can use this to predict the sensory consequences. A further benefit of including a control input is that the model can now be used in order to run counterfactual simulations of the dynamic behaviour of the system for various types of movements.
-
-We implement the control in the following manner: during an active head movement, the model generates a sequence of control signals $u_{1:T}$. For example, during a leftward head turn, using the sinusoidal acceleration profile shown in Figure \@ref(fig:head-turn-data), the acceleration is given by $Asin(2\pi t/T)$. Assuming the model has full knowledge about the onset of movement, and the type of movement (sinusoidal head turn), the model requires information about the frequency, $f = 1/T$, amplitude, $A$, and direction, which is given by the sign of the amplitude. These are  
-
-<!-- Equation XXX [refer to acceleration] -->
-
-Figure \@ref(fig:graphical-model-control) shows the resulting graphical model.
-
-```{r graphical-model-control, fig.cap="Graphical model extended with hierarchical model for self-initiated movements.", echo=FALSE}
-knitr::include_graphics('diagrams/dynamic-belief-network-inference-2.png')
-```
-
-
-
-
-
-# Modelling questions
-Experimental results to be explained: @Wertheim:2001cb report a cognitive suppression of otolith responses, based on participants' prior beliefs about possible motions.
-
-# An Investigation of Various Priors
-Here, we identify the various forms of predictive processing in the context of real-time sensory inference using SMC
-
-
-- Related to Filtering Algorithm
-- Higher-level Priors: The process model determines the kind of motion that is expected. Call this _hypothesis-driven_ sensory inference. It implements an expectation and is a strong prior.
-
-Show a table demonstrating the difference between:
-
-- prediction: 1-step ahead during inference
-- expectation: higher level priors
-
-
-
-The brain implements multiple priors:
-
-- ability to select type of motion
-- parameters of the motion
-
-control input allows inferring the consequences of one's own actions.
-
-
-
-# Various sources of interference
-
-Interference is rather surprising; if the goal is to perform simulation without incorporating the data, then we should run a Monte Carlo simulation. Why should this interfere with sensory inference perform by a particle filter? We propose that the answer is in the shared generative model.
-
-Here, we identify various sources of interference (2-way) between thought (higher-level cognition) and lower-level sensory processing. This interference can be either due to low-level influences in sensory inference, due to priors on higher-level parameters, choice of process model (false expectations of certain type of motion). This is shown by model simulations.
-
-- Model mis-specification: If an observer uses a strong higher level prior, i.e. the wrong direction, this means that the data may be completely mis-interpreted. (call this: the effect of inappropriate priors [@Schwabe:2008ho])
-
-- Re-use of same generative model: This may lead to leakage, i.e. inadvertently incorporating sensory evidence 
-
-- Decision-making: The interference may be explained in terms of higher-level perceptual decision-making mechanisms
-    - evidence accumulation
-    - bias (Starting point)
-
-## Summary
-Interference may the result of either: 
-
-1) mis-specified proposal distribution: inappropriate priors, or wrong type of motion or
-2) biased decision-making
-
-We should be able to investigate which by applying cognitive process models that explain response times and choices.
-
-# Simulations
-
-## Model specifications
-
-## 3-d state space model
-
-Figure \@ref(fig:3d-statespace) show a 3-d state space model
-
-```{r 3d-statespace, echo=FALSE, fig.cap="3-d state space model.", message=FALSE, warning=FALSE}
-
-load("simulations/model-fits/m1-3d-statespace.Rda")
-
-
-df_w <- with(m1_3d_statespace$summ_smc, {
+df_w <- with(m1_3d_head_turn$summ_smc, {
     data_frame(t = 1:length(w$f$mean),
                mean = w$f$mean,
                lower = w$f$quant$`0.025`,
                upper = w$f$quant$`0.975`)
 })
 df_w$param <- "Velocity"
-df_w$true <- m1_3d_statespace$model$data()$w_true
-df_w$observations <- m1_3d_statespace$model$data()$y
+df_w$true <- m1_3d_head_turn$model$data()$w_true
+df_w$observations <- m1_3d_head_turn$model$data()$y
 
-df_p <- with(m1_3d_statespace$summ_smc, {
+df_p <- with(m1_3d_head_turn$summ_smc, {
     data_frame(t = 1:length(p$f$mean),
                mean = p$f$mean,
                lower = p$f$quant$`0.025`,
                upper = p$f$quant$`0.975`)
 })
 df_p$param <- "Position"
-df_p$true <- m1_3d_statespace$model$data()$p_true
-df_p$observations <- m1_3d_statespace$model$data()$y
+df_p$true <- m1_3d_head_turn$model$data()$p_true
+df_p$observations <- m1_3d_head_turn$model$data()$y
 
 df <- bind_rows(df_p, df_w)
 
@@ -474,6 +308,7 @@ p1 <- df %>%
     scale_x_continuous(limits = c(1, 20),
                        breaks = c(0, 5, 10, 15, 20),
                        labels = c("0", "0.5", "1", "1.5", "2")) +
+    # scale_y_continuous(limits = c(-5, 20)) +
     # xlab("Time (sec)") + 
     ylab("Angular position (deg)") +
     papaja::theme_apa(base_size = 18) +
@@ -502,28 +337,218 @@ p2 <- df %>%
     scale_x_continuous(limits = c(1, 20),
                        breaks = c(0, 5, 10, 15, 20),
                        labels = c("0", "0.5", "1", "1.5", "2")) +
+    # scale_y_continuous(limits = c(-5, 20)) +
     xlab("Time (sec)") + 
     ylab("Angular Velocity (deg/s)") +
     papaja::theme_apa(base_size = 18) +
     theme(panel.border = element_blank(), 
           axis.line = element_line(colour="black", size = 0.75, lineend="square"))
 
-cowplot::plot_grid(p1, p2, ncol = 1) 
+p_3d_1 <- cowplot::plot_grid(p1, p2, ncol = 1)
+                   # labels = c("Position", "Velocity"),
+                   # label_size = 12)
+```
+
+```{r passive, eval=FALSE, fig.cap="Particle filter for inferring velocity and position during a two-second head turn.", message=FALSE, warning=FALSE, cache=TRUE, include=FALSE}
+params <- list(sdx = c(0.8, 0.8) * eye(2), sdy = 2.0,
+                x_init = c(0, 0),
+                sdx_init = 0.5*eye(2),
+                A = 20, N = 1000,
+                dt = 0.1, freq = 0.5,
+                transfun = transfun)
+
+passive <- run_particle_filter(motiondata = motiondata, params = params,
+                            resample_particles = TRUE, rs_thresh = 0.5,
+                            selfmotion = "passive")
+
+plot(passive, panel_label = "", print_loglik = FALSE, predict = FALSE, imagine = FALSE)
+```
+
+
+The measurements are shown as circles, and the true velocity that generated the data is shown as a dotted line. This velocity is the result of an external force being applied. The solid lines depict the mean estimates, and the shaded areas show the $95\%$ credible intervals. The model is able to estimate the latent state despite making the assumption that the acceleration is constant. It does this by allowing for random changes in acceleration by letting the process noise be sufficiently large. Note that both position and velocity estimates lag the true values; this is due the fact that the acceleration is expected to be constant, and thus the system is slow to react to changes. The estimation can be improved by increasing the process noise. Figure \@ref(fig:3d-statespace-fits) (b) shows the resulting estimates. Whilst the lag is reduced, a consequence of increasing the process noise is that the measurements are given more weight, resulting in a tendency to over-fit the noise in the measurements. The constant velocity (random acceleration) model is unable to capture the underlying smooth trajectory of the velocity and position, instead showing random jumps in the velocity estimate.
+
+```{r 3d-statespace-2, fig.cap="Particle filter with increased process noise.", message=FALSE, warning=FALSE, include=FALSE}
+
+load("simulations/model-fits/m1_3d_head_turn_2.Rda")
+
+df_w <- with(m1_3d_head_turn_2$summ_smc, {
+    data_frame(t = 1:length(w$f$mean),
+               mean = w$f$mean,
+               lower = w$f$quant$`0.025`,
+               upper = w$f$quant$`0.975`)
+})
+df_w$param <- "Velocity"
+df_w$true <- m1_3d_head_turn_2$model$data()$w_true
+df_w$observations <- m1_3d_head_turn_2$model$data()$y
+
+df_p <- with(m1_3d_head_turn_2$summ_smc, {
+    data_frame(t = 1:length(p$f$mean),
+               mean = p$f$mean,
+               lower = p$f$quant$`0.025`,
+               upper = p$f$quant$`0.975`)
+})
+df_p$param <- "Position"
+df_p$true <- m1_3d_head_turn_2$model$data()$p_true
+df_p$observations <- m1_3d_head_turn_2$model$data()$y
+
+df <- bind_rows(df_p, df_w)
+
+p1 <- df %>%
+    filter(param == "Position") %>%
+    ggplot(data = ., aes(x = t)) +
+    geom_ribbon(aes(ymin = lower, ymax = upper), fill = "grey90") +
+
+    geom_line(aes(y = true), alpha = 0.9,
+              linetype = 4, size = 1.2) +
+
+    geom_line(aes(y = mean), size = 1.6) +
+    geom_hline(yintercept = 0, linetype = 2, color = "grey70") +
+    scale_x_continuous(limits = c(1, 20),
+                       breaks = c(0, 5, 10, 15, 20),
+                       labels = c("0", "0.5", "1", "1.5", "2")) +
+    # scale_y_continuous(limits = c(-5, 20)) +
+    # xlab("Time (sec)") + 
+    ylab("Angular position (deg)") +
+    papaja::theme_apa(base_size = 18) +
+    theme(axis.title.x=element_blank()) +
+    theme(panel.border = element_blank(), 
+          axis.line = element_line(colour="black", size= 0.75, lineend="square"))
+   
+
+p2 <- df %>%
+    filter(param == "Velocity") %>%
+    ggplot(data = ., aes(x = t)) +
+    geom_ribbon(aes(ymin = lower, ymax = upper), fill = "grey90") +
+
+    geom_line(aes(y = true), alpha = 0.9,
+              linetype = 4, size = 1.2) +
+
+    geom_line(aes(y = mean), size = 1.6) +
+    geom_point(aes(y = observations),
+               alpha = 1, fill = "white",
+               colour = "white",
+               shape = 21, size = 6) +
+    geom_point(aes(y = observations), alpha = 1,
+               fill = "black",
+               colour = "grey40", shape = 21, size = 4) +
+    geom_hline(yintercept = 0, linetype = 2, color = "grey70") +
+    scale_x_continuous(limits = c(1, 20),
+                       breaks = c(0, 5, 10, 15, 20),
+                       labels = c("0", "0.5", "1", "1.5", "2")) +
+    # scale_y_continuous(limits = c(-5, 20)) +
+    xlab("Time (sec)") + 
+    ylab("Angular Velocity (deg/s)") +
+    papaja::theme_apa(base_size = 18) +
+    theme(panel.border = element_blank(), 
+          axis.line = element_line(colour="black", size = 0.75, lineend="square"))
+
+p_3d_2 <- cowplot::plot_grid(p1, p2, ncol = 1) 
                    # labels = c("Position", "Velocity"),
                    # label_size = 12)
 
 ```
+```{r passive-2, eval=FALSE, fig.cap="Particle filter for inferring velocity and position during a two-second head turn with increased process noise.", message=FALSE, warning=FALSE, cache=TRUE, include=FALSE}
+params <- list(sdx = c(1.8, 1.8) * eye(2), sdy = 2.0,
+                x_init = c(0, 0),
+                sdx_init = 0.5*eye(2),
+                A = 20, N = 1000,
+                dt = 0.1, freq = 0.5,
+                transfun = transfun)
+
+passive_2 <- run_particle_filter(motiondata = motiondata, params = params,
+                            resample_particles = TRUE, rs_thresh = 0.5,
+                            selfmotion = "passive")
+
+plot(passive_2, panel_label = "", print_loglik = FALSE, predict = FALSE, imagine = FALSE)
+```
+
+
+```{r 3d-statespace-fits, echo=FALSE, fig.cap="(a) Particle filter with a 3-d state space model for inferring velocity and position during a two-second head turn. (b) The same particle filter with increased process noise.", message=FALSE, warning=FALSE}
+cowplot::plot_grid(p_3d_1, p_3d_2, ncol = 2)
+```
+
+<!-- A well known shortcoming of the model described above is that the proposal distribution is equal to the prior distribution [@VanDerMerwe:2000vx] -->
+
+# Extension allowing the prediction of active movements
+
+During sensory inference the measurements are incorporated, and and a posterior estimate of the latent state is obtained by updating the prior with the likelihood. The underlying kinematic model thus relies on the sensory data to inform its estimates. This model can be used in order to track the behaviour of a dynamic system by including the acceleration as a latent state, it is purely data-driven, and does not include any means of incorporating an active prediction of the kinematics. Thus, it cannot explain top-down expectations or biases. This form of anticipation is not the same as the 1-step ahead predictions made during inference, but rather implements higher level prior beliefs about the direction of movement. For example, imagine seeing that someone is going to push you. You can use this information, derived from the visual modality, in order prepare yourself in order to compensate for this. However, you do not want to act too early, but rather wait until you are actually moving.
+
+> While this model is perfectly suitable for sensory inference, for the task of predicting the sensory consequences of self-initiated movemenents, the model is inadequate, as it does not allow including further knowledge about kinematics, which can be used to improve the proposal distribution. This knowledge is obtained by means of an efference copy of executed or planned motor commands, which is sent to a forward model. The forward model must then translate the information from the efference copy in a format that is suitable for the sensory system. 
+
+An obvious way of including this is the mechanism that allows one to predict the sensory consequences of self-initiated movement via an efference copy. In state-space models, this is implemented as a control input $u$, which extends the graphical model shown in Figure \@ref(fig:graphical-model-inference). In this model, the estimated acceleration is replaced by an known acceleration signal. This capability to predict the consequences of self-initiated movements is essential in order to distinguish re-afference from ex-afference - the system has knowledge about how it moves, and can use this to predict the sensory consequences. A further benefit of including a control input is that the model can now be used in order to run counterfactual simulations of the dynamic behaviour of the system for various types of movements.
+
+We implement the control in the following manner: during an active head movement, the model generates a sequence of control signals $u_{1:T}$. For example, during a leftward head turn, using the sinusoidal acceleration profile shown in Figure \@ref(fig:head-turn-data), the acceleration is given by $Asin(2\pi t/T)$. Assuming the model has full knowledge about the onset of movement, and the type of movement (sinusoidal head turn), the model requires information about the frequency, $f = 1/T$, amplitude, $A$, and direction, which is given by the sign of the amplitude. 
+
+<!-- Equation XXX [refer to acceleration] -->
+
+Figure \@ref(fig:graphical-model-control) shows the resulting graphical model.
+
+```{r graphical-model-control, fig.cap="Graphical model extended with hierarchical model for self-initiated movements.", echo=FALSE}
+knitr::include_graphics('diagrams/dynamic-belief-network-inference-2.png')
+```
+
+
+
+# __BIS HIER.__
+
+# Modelling questions
+Experimental results to be explained: @Wertheim:2001cb report a cognitive suppression of otolith responses, based on participants' prior beliefs about possible motions.
+
+# An investigation of various priors and predictions
+Here, we identify the various forms of predictive processing in the context of real-time sensory inference using SMC
+
+- Related to filtering algorithm
+- Higher-level priors: The process model determines the kind of motion that is expected. Call this _hypothesis-driven_ sensory inference. It implements expectation on longer time-scales.
+
+Show a table demonstrating the difference between:
+
+- prediction: 1-step ahead during inference
+- expectation: higher level priors
+
+The brain implements multiple priors:
+
+- ability to select type of motion
+- parameters of the motion
+
+
+# Various sources of interference
+
+Interference is rather surprising; if the goal is to perform simulation without incorporating the data, then we should run a Monte Carlo simulation. Why should this interfere with sensory inference perform by a particle filter? We propose that the answer is in the shared generative model.
+
+Here, we identify various sources of interference (2-way) between thought (higher-level cognition) and lower-level sensory processing. This interference can be either due to low-level influences in sensory inference, due to priors on higher-level parameters, choice of process model (false expectations of certain type of motion). This is shown by model simulations.
+
+- Model mis-specification: If an observer uses a strong higher level prior, i.e. the wrong direction, this means that the data may be completely mis-interpreted. (call this: the effect of inappropriate priors [@Schwabe:2008ho])
+
+- Re-use of same generative model: This may lead to leakage, i.e. inadvertently incorporating sensory evidence 
+
+- Decision-making: The interference may be explained in terms of higher-level perceptual decision-making mechanisms
+    - evidence accumulation
+    - bias (Starting point)
+
+## Summary
+Interference may the result of either: 
+
+1) mis-specified proposal distribution: inappropriate priors, or wrong type of motion or
+2) biased decision-making
+
+We should be able to investigate which by applying cognitive process models that explain response times and choices.
+
+
+# Simulations
+> Should we have a separate simulations section, or should the simulations be distributed?
+## Model specifications
+
 
 ## Monte Carlo simulation
 Show dynamics when simulating using various proposal distributions implementing various natural head motions:
 
-- turing left
+- turning left
 - shaking head quickly
 - shaking head slowly (communicative gesture)
 
 
 ## Expectations based on higher level priors
-In our model, there is no difference between modelling active self-motion, and an anticpation of passive self-motion due to predictable external forces. This is a testable hypothesis.
+In our model, there is no difference between modelling active self-motion, and an anticipation of passive self-motion due to predictable external forces. This is a testable hypothesis.
 
 ## Model mis-specification
 ### Inappropriate priors
@@ -531,7 +556,7 @@ In our model, there is no difference between modelling active self-motion, and a
 ### Wrong type of motion model
 For example, expect shaking instead of head turn
 
-```{r active-1, cache=TRUE, fig.cap="Mis-specified proposal distribution.", echo=FALSE, message=FALSE, warning=FALSE}
+```{r active-1, eval=FALSE, fig.cap="Mis-specified proposal distribution.", message=FALSE, warning=FALSE, cache=TRUE, include=FALSE}
 
 move <- function(A, t, Time) {
     rnorm(1, A * sin(2 * pi * (t - 1)/Time), 0.1)
@@ -607,7 +632,7 @@ Head direction cells are thought to integrate signals of vestibular origin to ma
 
 - mental simulation cannot just re-use the state used in sensory inference, because the velocity is fed to the head direction cells. The brain would get confused
 - directional signal is not just a simple integration of velocity signals from the vestibular system
-- signals from motor efferecence copy or proprioceptive systems appear to be crucial for upating the preferred firing direction over time
+- signals from motor efferecence copy or proprioceptive systems appear to be crucial for updating the preferred firing direction over time
 
 
 ## Testable hypotheses
