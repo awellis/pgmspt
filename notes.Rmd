@@ -1,102 +1,76 @@
-# head direction cells
+---
+output: 
+  html_document: 
+    fig_caption: yes
+    number_sections: yes
+    theme: spacelab
+---
 
-[@Taube:2007fk]
+# one
+that the brain is able to imagine, plan, perform counterfactual simulations because it coopts the mechanism evolved in order to predict the sensory consequences of its actions.
 
-- mental simulation cannot just er-use the state used in sensory inference, because the velocity is fed to the head directino cells. The brain would get confused
+interference arises when he brain, due to task demands, uses the control mechanism in a manner which is not entirely counterfactual
 
-- directinal signal is not just a simple integration of velocity signals from the vestibular system
-- signals from motor efferecence copy or proprioceptive systems appear to be crucial for upating the preferred firing direction over time
-- what about this? you don't know where you are, because you were passively moved. Can you update if I tell you (verbally instruct you)?
-- vestibular input is eesntial for establishing the head direction signal? How can we reconcile this with the assumption that re-afference is cancelled, i.e. input due to active motion is cancelled. Maybe it's the control model...
+# two
+interference is surprising, because a mental simulation should be counterfactual. if it isn't this might be a problem. why should thinking about rotating left have an effect on your ability to sense leftward motion?
 
-# Corollary discharge
-[@Crapse:2008jc]
+we show this type of interactions needs to be investigate pdf in a probabilistic framework
 
+# three
+we identify 2 main problem that have not been addressed: in SPT how do people decide which way and for how long to rotate?
 
-# Predictive control 
-[@Stahl:2011dl]
+and how does imagery interfere?
 
+the first issue speaks to the fact that we have to solve the inverse problem before we can simulate in order to transform our FOR. the is equivalent to solving a planning problem, I.e. choosing the best action in order to reach a goal. this is actually counterfactual inference. 
 
-- movemements can induce sensory input
-- sensory input due to own actions is indistinguishable from input due to external forces
-- strategy: efference copy -> corollary discharge
+after introducing the graphical model, we show the types of inference, I.e. which nodes are clamped.
 
-it seems intuitively obvious that this mechanism has something to do with mental imagery.
-This has been pointed out many times; mental imagery and mental simulation more generelly is somehow related to the capacity to compute corollay discharge, based on the efference copy and a forward model.
+then we explain interference as biased perceptual decision making, concentrating on the Nigmatullina effect. how do biases arise? the basic model is not equipped to deal with bias.
 
-> Necessary components:  efference copy and a forward model
+# four
+but how does interference through CVS on mental spatial transformation work? We hypothesize that CVS is a strange stimulus and needs interpretation by the brain. Passive actual movement puts the brain in an alert mode, because it might have to counteract the motion, I.e. the control circuits are engaged, leading to less capacity for planning. 
 
-Sensory receptors don't care about their input. The brain has to deal with the problem further downstream
+in any case, we need a closer look at the connection between menral simulation and planning and the ability to predict self initiated movements.
 
+# five
+finally, how can we explain the bias in the Nigmatullina experiment? we need to investigate whether it is due to a bias in the starting point, in terms of a traditional method of analyzing such data, i.e. DDM. this is implemented by a prior on the choice alternatives, leading to starting point or altered drift rate. 
 
+or is it a model misspecification?
 
+The alternative model by Merfeld would say it's just the starting point.
 
-```{r generate-data-1, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
-dt <- 0.1
-motiondata <-  generate_data(T = 2, frequency = 0.5,
-                             amplitude = 20,
-                             sensor_sd = 2.0)
-# plot_trajectories(motiondata = motiondata)
+# six
+perform simulations to show a theoretical analysis of what may cause the Nigmatullina effect.
 
-motiondata_hidden <- motiondata %>%
-    gather(type, value = value, -time) %>%
-    filter(type != "observations") %>%
-    mutate(type = factor(type,
-                         levels = c("position",
-                                    "velocity",
-                                    "acceleration")))
+model misspecification might be unlikely, but certainly worth a look
 
+# seven
+we tell the story in two parts. 
 
+1) describe how we can simulate using a parsimonious model that refuses components of the sensory inference model and components involved in distinguishing active from passive movements.
 
-p1 <- motiondata_hidden %>%
-        ggplot(aes(x = time, y = value)) +
-            geom_line(aes(linetype = type), size = 1.4) +
-            geom_point(data = motiondata,
-                       aes(x = time, y = observations),
-                       shape = 21, colour = "white",
-                       fill = "white", size = 6, stroke = 2) +
-            geom_point(data = motiondata,
-                       aes(x = time, y = observations),
-                       shape = 21, colour = "black",
-                       fill = "white", size = 4, stroke = 2) +
-            guides(linetype = guide_legend(keywidth = 2.5, keyheight = 1)) +
-            xlab("Time (sec)") +
-            ylab("Angular position (deg)") +
-            theme_apa() +
-            theme(legend.title=element_blank())
+2) what happens when we simulate. switch off inputs, sensory gating corresponding to not resampling. show tables of correspondence mechanisms. show that interest,S of probabilistic computations the ability to model sensory consequences is a question of creating a proposal distribution for sampling from the prior. show table comparing Monterey carlo simulation with particle filtering. first show tables explaining components of filtering.
 
+# eight
+of course we first elucidate how the ability to simulate is related to sensory inference in real time.
 
-motiondata_2 <-  generate_data(T = 2, frequency = 0.5,
-                             amplitude = -20,
-                             sensor_sd = 1.8)
-# plot_trajectories(motiondata = motiondata)
+vestibular sensory inference is a very good example, because it se ms to be well described as sequential monte carlo
 
-motiondata_hidden_2 <- motiondata_2 %>%
-    gather(type, value = value, -time) %>%
-    filter(type != "observations") %>%
-    mutate(type = factor(type,
-                         levels = c("position",
-                                    "velocity",
-                                    "acceleration")))
+# nine
+interference is either:
 
+1) mis-specified proposal distribution
+2) biased decision-making
 
+# 10
+we focus explicitly know:
 
-p2 <- motiondata_hidden_2 %>%
-        ggplot(aes(x = time, y = value)) +
-            geom_line(aes(linetype = type), size = 1.4) +
-            geom_point(data = motiondata_2,
-                       aes(x = time, y = observations),
-                       shape = 21, colour = "white",
-                       fill = "white", size = 6, stroke = 2) +
-            geom_point(data = motiondata_2,
-                       aes(x = time, y = observations),
-                       shape = 21, colour = "black",
-                       fill = "white", size = 4, stroke = 2) +
-            guides(linetype = guide_legend(keywidth = 2.5, keyheight = 1)) +
-            xlab("Time (sec)") +
-            ylab("Angular position (deg)") +
-            theme_apa() +
-            theme(legend.title=element_blank())
+- forward simulation, explaining the requirements from a statistical / probabilistic point of view
+- interference from thought to inference, and explore how this might occur. we focus on this direction because it is easier to understand than the other direction 
 
-cowplot::plot_grid(p1, p2, nrow = 2, labels = c("a", "b"))
-```
+show a sequence diagram showing a typical trial in an experiment
+
+# eleven
+we implement forward sampling by sampling from the proposal distribution without updating. this corresponds to monte carlo simulation
+
+In order to set up a particular simulation, the brain must create a proposal distribution such that it represents the kinematics of the system to be modelled.

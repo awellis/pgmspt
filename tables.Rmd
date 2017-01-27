@@ -1,5 +1,13 @@
+---
+output: 
+  html_document: 
+    fig_caption: yes
+    number_sections: yes
+    theme: spacelab
+---
 
-# Tables
+# Simple Table
+
 
 Right     Left     Center     Default
 -------     ------ ----------   -------
@@ -10,18 +18,33 @@ Right     Left     Center     Default
 Table:  Demonstration of simple table syntax.
 
 
--------------------------------------------------------------
-    Centered   Default           Right Left
-Header    Aligned         Aligned Aligned
------------ ------- --------------- -------------------------
-    First    row                12.0 Example of a row that
-spans multiple lines.
+# Multiple lines
 
-Second    row                 5.0 Here's another one. Note
-the blank line between
-rows.
+-------------------------------------------------------------
+ Centered   Default           Right Left
+  Header    Aligned         Aligned Aligned
+----------- ------- --------------- -------------------------
+   First    row                12.0 Example of a row that
+                                    spans multiple lines.
+
+  Second    row                 5.0 Here's another one. Note
+                                    the blank line between
+                                    rows.
 -------------------------------------------------------------
 
 Table: Here's the caption. It, too, may span
 multiple lines.
 
+
+# Grid table
+: Sample grid table.
+
++---------------+---------------+--------------------+
+| Fruit         | Price         | Advantages         |
++===============+===============+====================+
+| Bananas       | $1.34         | - built-in wrapper |
+|               |               | - bright color     |
++---------------+---------------+--------------------+
+| Oranges       | $2.10         | - cures scurvy     |
+|               |               | - tasty            |
++---------------+---------------+--------------------+

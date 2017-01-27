@@ -1,10 +1,10 @@
 ---
-# title             : "Modeling Cognitive Effects Vestibular Sensory Inference: From Sensory Inference To Imagined Self-Motion"
+# title: "Modeling Cognitive Effects Vestibular Sensory Inference: From Sensory Inference To Imagined Self-Motion"
 
-title             : "Vestibular Contributions to Spatial Perspective Transformations: From Sensory Inference To Imagined Self-Motion"
+title: "Vestibular Contributions to Spatial Perspective Transformations: From Sensory Inference To Imagined Self-Motion"
 
-# title             : "A Computational Perspective On Spatial Perspective Transformations: From Sensory Inference To Imagined Self-motion"
-# title             : "Probabilistic Computations Underlying Simulated Self-Rotations"
+# title: "A Computational Perspective On Spatial Perspective Transformations: From Sensory Inference To Imagined Self-motion"
+# title: "Probabilistic Computations Underlying Simulated Self-Rotations"
 # title: Probabilistic Computations Underlying Vestibular Cognition
 shorttitle        : "Vestibular Contributions to SPT"
 
@@ -34,7 +34,8 @@ abstract: >
         Recent research has indicated that the vestibular network is involved in various cognitive tasks involving mental spatial transformations. However, the nature of this involvement remains unclear.  Here, we provide a computational framework for vestibular cognition and discuss this in the context of perspective transformations, which require a simulated rotation of the self. We explore how the ability to model the effects of body rotation using vestibular input might enable the ability to imagine body rotations. We approach this problem by extending previous models of vestibular sensory processing to include the ability to model the sensory consequences of self-initiated movements, and discuss how this can be further extended to allow mentally simulated rotations of the self. We ... Predicting the sensory input is key to understanding imagined rotations. Mental imagery goes beyond prediction, rather, it involves the use of counterfactual queries in a probabilistic model.
 
 
-keywords: probabilistic graphical models, particle filter, embodied cognition, vestibular cognition, spatial perspective taking, mental imagery
+keywords: probabilistic graphical models, particle filter, embodied cognition, vestibular cognition, spatial perspective taking, mental imagery, mental simulation
+
 wordcount: "X"
 
 bibliography: "bibliography.bib"
@@ -46,6 +47,8 @@ footnotelist      : no
 number_sections   : no
 lineno            : yes
 linkcolor         : "blue"
+fig_caption       : true
+
 # citeproc          : yes
 # csl               : apa.csl
 
@@ -53,14 +56,16 @@ lang              : "english"
 class             : "man"
 output:
      # papaja::apa6_word:
-     papaja::apa6_pdf:
-        pandoc_args:
-        fig_caption: true
+     papaja::apa6_pdf
+        # pandoc_args:
+        # - --filter
+        #   pandoc-fignos
+        
 ---
 
 ```{r preliminary, cache=FALSE, message = FALSE, warning = FALSE}
 library(papaja)
-library(pander)
+# library(pander)
 library(ggplot2)
 library(dplyr)
 library(tidyr)
@@ -86,8 +91,7 @@ knitr::opts_chunk$set(cache = TRUE,
 
 <!-- The goal of this study is to discuss the role of the vestibular system in embodied mental transformations. -->
 
-
-Adopting the spatial perspective of another person is generally considered an essential cognitive ability, and plays a vital role in our ability to determine what another person can see and in order to coordinate joint actions [@CreemRegehr:2013kx, @Pezzulo:2013iy]. Many studies have also pointed out that perspective taking is of fundamental importance for language comprehension and communication [@Beveridge:2013gx], and social cognition in general [@Deroualle:2014ho].  
+Adopting the spatial perspective of another person is an essential cognitive ability, and plays a vital role in our ability to determine possible actions of another person, and in order to coordinate joint actions [@CreemRegehr:2013kx, @Pezzulo:2013iy]. Perspective taking is also considered to be of fundamental importance for language comprehension and communication [@Beveridge:2013gx], and social cognition in general [@Deroualle:2014ho].  
 
 A number of recent studies have demonstrated that the vestibular system, which deals with sensory signal relating to movements of the head, is involved in such spatial transformations [@Lenggenhager:2008et, @Deroualle:2015gk, @Falconer:2012cl, @Gardner:2016kd]. This is demonstrated in the form of interference effects between mental transformations and concurrent sensory stimulation. However, to date, there has little attempt to understand the involvement of the vestibular system in higher-level cognitive abilities from a computational perspective. In this paper, we focus specifically on the role of the vestibular system for spatial perspective transformations, and we draw the link between probabilistic computations performed by the vestibular system in the service of real-time interaction with the world, and the brain's ability to run mental simulations for the purpose of adopting the perspective of another person.
 
@@ -103,13 +107,18 @@ knitr::include_graphics('diagrams/fig-1-common-process.png')
 
 In order to do this, the speaker must first determine what type of movement to perform, and the direction, velocity and duration that lead to the desired outcome. This means that in order to know what to simulate, the speaker must first work backwards from the desired outcome, and infer the actions that are most likely to lead to that outcome. This is known in the field of motor control as the inverse problem [@Wolpert:1998td]. In order to achieve the desired position, the motor commands can then be simulated, and the expected sensory consequences can be estimated; this is known as the forward problem.  Figure \@ref(fig:spt-schematic) (b) shows that if the goal is to simply simulate the perceptual experience of rotation around the body's vertical (yaw) axis, rather than project a representation of one's body onto a target, the problem is simplified; the actor can perform forward inference without the need to determine the optimal motor action. As demonstrated by @Penny:2013iv, these computations can be performed in a common probabilistic model. Interestingly, this has been discussed in the context of reinforcement learning, and planning in humans has been described as reverse inference [@Botvinick:2012fe]. Further, [@Pickering:2014bo] discuss the relationship between control-theoretic notions of inverse/forward models, known collectively as internal models, and and more general concepts of a generative model in a hierarchical Bayesian framework.
 
-Performing a simulation of body movements and estimating the sensory consquences amounts to simulating the behaviour of a dynamical system; this requires a generative model of the system. The aim of this paper is to specifically investigate the generative model that may be used for mental spatial transformations. The ability to run embodied simulations is often claimed to be grounded in the relevant sensorimotor circuits, and we claim that the vestibular system is ideally suited to investigate this connection, because the generative models used by the vestibular system for dynamic sensory inference have been extensively investigated using approaches from optimal control theory, and more recently, dynamic Baysian inference. The vestibular system faces a number of challenges in interpreting the sensory measurements provided by the semi-circular canals (SCC) and otolith organs. On the one hand, these signals  are very noisy, and ambiguous [@PaulRMacNeilage:2008bv]; the otoliths respond both to translations and tilt of the head relative to gravity, and in order to disambiguate between translation and tilt, the brain must perform sophisticated computations at the level of the brain stem. It has become clear that the nature of these computations is probabilistic, and that the brain makes use of strong prior beliefs in order to interpret these sensory signals. A further challenge faced by the vestibular system is that it needs to distinguish between sensory signals that are the result of active motion, and those resulting from external forces [@Cullen:2009dc, @Cullen:2014gx]. The ability to distinguishing re-afferent from ex-afferent sensory signals is an essential capability of all organisms that move actively [@Crapse:2008jc].
+Performing a simulation of body movements and estimating the sensory consquences amounts to simulating the behaviour of a dynamical system using a forward model; this requires a generative model of the system.The aim of this paper is to specifically investigate the generative model that may be used for mental spatial transformations. The ability to run embodied simulations is often claimed to be grounded in the relevant sensorimotor circuits, and we claim that the vestibular system is ideally suited to investigate this connection, because the generative models used by the vestibular system for dynamic sensory inference have been extensively investigated using approaches from optimal control theory, and more recently, dynamic Baysian inference. The vestibular system faces a number of challenges in interpreting the sensory measurements provided by the semi-circular canals (SCC) and otolith organs. On the one hand, these signals  are very noisy, and ambiguous [@PaulRMacNeilage:2008bv]; the otoliths respond both to translations and tilt of the head relative to gravity, and in order to disambiguate between translation and tilt, the brain must perform sophisticated computations at the level of the brain stem. It has become clear that the nature of these computations is probabilistic, and that the brain makes use of strong prior beliefs in order to interpret these sensory signals. A further challenge faced by the vestibular system is that it needs to distinguish between sensory signals that are the result of active motion, and those resulting from external forces [@Cullen:2009dc, @Cullen:2014gx]. The ability to distinguishing re-afferent from ex-afferent sensory signals is an essential capability of all organisms that move actively [@Crapse:2008jc].
 
 Furthermore, the apparent connection between mental imagery and predictive processing has repeatedly been alluded to [@Moulton:2009ij, @Clark:2012vf, @Gambi:2015gv], and @Grush:2004wx claims that mental imagery is performed by emulator circuits implementing a forward model. These ideas can also be addressed from a computational point of view in the context of dynamic Bayesian inference, where there are multiple roles for sensory predictions, over different time scales. This was recently discussed by [@Tian:2012ui] in the context of imagined speech. 
 
 The putative link between predictive processing and higher cognitive processing has a firm basis in predictive processing accounts of sensory inference [Friston]. The predictive processing framework has been applied to almost all sensory modalities [CITATIONS: pain, proprioception, auditory , visual, etc.], and the picture that has emerged in recent years is that the brain employs sophisticated inference algorithms in order to "interpret" the stream of incoming sensory data. The brain seems to be actively engaged in formulating hypotheses, and testing these on sensory data; this has been extended to the concept of active inference [Friston], in which an agent attempts to either change it's internal model of world, or to interven on the world in order to fulfil sensory predictions. We claim that the vestibular modality is particularly well-suited to investigating predictive processing at multiple hierarchical scales, from the lowest levels of sensory inference to higher levels, where goals, intentions and beliefs of the organism become relevant. A case in point is the study by @Wertheim:2001cb, who provided evidence that participants' perceptions of tilt induced by vestibular stimulation are shaped to a large extent by the beliefs about possible motions they formed prior to taking part in the experiement.
 
-Interference effects between higher-level cognitive processes, such as SPT and mental imagery, and sensory inference, are thought to occur as a result of shared circuitry [@Deroualle:2014ho, @Nigmatullina:2015gh]. @Ellis:2017fg recently claimed that these types of interference effects might arise as a result of cognitive processing exerting an influence on circuits performing sensory inference via shared higher-level priors. In this paper, we pursue this claim, and we attempt to the grounding of cognitive abilities in the computations performed by low-level sensory circuits in the service of dynamic real-time interactions with the world.
+Interference effects between higher-level cognitive processes, such as SPT and mental imagery, and sensory inference, are thought to occur as a result of shared circuitry [@Deroualle:2014ho, @Nigmatullina:2015gh]. @Ellis:2017fg recently claimed that these types of interference effects might arise as a result of cognitive processing exerting an influence on circuits performing sensory inference via shared higher-level priors. In this paper, we pursue this claim, and we attempt to the grounding of cognitive abilities in the computations performed by low-level sensory circuits in the service of dynamic real-time interactions with the world. A problem that needs to addressed is whether models that are applicable to lower-level sensory inference are scalable, in the sense that they are able to represent hierarchically structured knowledge, and can be applied to tasks requiring compositionality (?) [@Kwisthout:2016fx, @Griffiths:2012ii]. In the field of cognitive science, sophisticated model of structured representations using Bayesian networks [@Pearl:1988wz] have been developed [@Tenenbaum:2011hd, @Lucas:2010tu], with applications to concept learning [CITATION], inductive biases in reasoning, in cognitive models of development [@Perfors:2011ex], language [@Goodman:2016go] and social cognition [@Baker:2009kx].
+@Kwisthout:2016fx make the point that predictive processing accounts are situated at low levels in the processing hierarchy, usually at the level of sensory inference or at the level describing kinematics. In this paper, we address this issue by starting from a model developed for low-level sensory processing, incorporating basic abilities to predict sensory consequences of movement based on knowledge about the kinematics, and extending this to account for interactions between thought processes, operationalized as mental simulations of sensorimotor experience, and sensory processing.
+
+> TODO: CITE [@Battaglia:2013fm]
+
+To our knowledge, few studies have addressed the idea that higher level cognitive processes are grounded in the circuits performing sensory inference. We claim that if cognition is grounded in sensory inference, and that this is to be experimentally studied by analyzing interactions between thought and perception, then it is vital that this be carried within the constraints of a theoretical (computational) framework. A suitable formalism for this is the framework of probabilistic graphical models, and within this framework, interactions between thought and perception can be modelled as effects of higher level priors and hyperpriors on inference at a computational level. Investigating inference at the level of algorithmic implementations might provide further insight.
 
 We proceed by introducing recent models of Bayesian inference for real-time, dynamic sensory processing of vestibular data, based on particle filters [@Laurens:2006be, @Karmali:2012cv], and we reframe these as probabilistic graphical models. This allows us to investigate the generative model separately from the algorithm used for inference, and we then extend the basic model for sensory inference in order to focus specifically on the ability to model the consequences of self-initiated, active movements. This is an implementation of the idea that information about motor commands are projected to sensory areas by means of an efference copy, based on which a forward model then computes the sensory consequences. Our aims are to:
 
@@ -117,17 +126,23 @@ We proceed by introducing recent models of Bayesian inference for real-time, dyn
 2) identify various sources of interference between higher-level cognition and lower-level sensory processing.
 3) provide suggestions for future research aiming to investigate the connections between cognitive and sensory processing.
 
+We investigate one specific type of head movement, a rotation of the head about the yaw axis, and discuss this in the context of the probabilistic computations that are performed when the goal is to:
+
+1) infer motion caused by external events
+2) infer the consequences of one's own actions.
 
 # Dynamic Bayesian models for sensory inference
 
 ## Previous work
 Whereas early models of vestibular sensory processing were inspired by control theory [@Borah:1988fd, @Merfeld:1999cg], several recent studies have described vestibular sensory processing as dynamic Bayesian inference [@Laurens:2006be, @PaulRMacNeilage:2008bv, @Karmali:2012cv]. @Selva:2012gsa
-provide a recent review of the relationship between optimal observer models and models which employ Kalman filtering, and show that these are largely equivalent. Both @Karmali:2012cv and @Laurens:2006be described vestibular sensory inference in terms of particle filtering, which is a particular inference algorithm that can be used to perform inference in state-space models. [@Doucet:2000bh, @Doucet:2009us]. Using their model, @Laurens:2006be were able to simulate perceptual responses to centrifugation and off-vertical axis rotations. A well-known phenomenon of vestibular perception is velocity storage, which is defined as the slower decay of perceptual and oculomotor responses, relative to the SCC afferent responses [@Raphan:1979hn], __[Robinson 1977]__. This is generally seen as evidence for the existence of an internal model in the processing of vestibular signals. @Karmali:2012cv focussed on one-dimensional angular velocity during yaw rotations; their model was able to explain the phenomenon of velocity storage as a consequence of particle filtering, with the time constant of velocity storage depending on the variability of the sensory afferent signals.
+provide a recent review of the relationship between optimal observer models and models that employ Kalman filtering, and show that these are largely equivalent. Both @Karmali:2012cv and @Laurens:2006be described vestibular sensory inference in terms of particle filtering, which is a particular algorithm that can be used to perform inference in state-space models. [@Doucet:2000bh, @Doucet:2009us]. Using their model, @Laurens:2006be were able to simulate perceptual responses to centrifugation and off-vertical axis rotations. A well-known phenomenon of vestibular perception is velocity storage, which is defined as the slower decay of perceptual and oculomotor responses, relative to the SCC afferent responses [@Raphan:1979hn], __[Robinson 1977]__. This is generally seen as evidence for the existence of an internal model in the processing of vestibular signals. @Karmali:2012cv focussed on one-dimensional angular velocity during yaw rotations; their model was able to explain the phenomenon of velocity storage as a consequence of particle filtering, with the time constant of velocity storage depending on the variability of the sensory afferent signals.
 
 ## Generative model for sensory inference
-We proceed by providing a brief introduction to the concept of state-space models, and particle filtering, which is a particular algorithm that can be used to perform inference in state-space models. While Kalman filters provide the optimal solution when the restrictions of linear Gaussian State-space models are met, they are not easily extensible to non-linear models, which is relevant when considering multi-dimensional motion. Particle filtering can be applied to arbitrary nonlinear models. State-space models can be seen as special cases of more general Bayesian hierarchical models [@Bishop:2006ui; @Murphy:2012ua]. Following the same approach as @Penny:2013iv, we first reframe the generative model used for sensory inference as a dynamic probabilistic graphical model
+We proceed by providing a brief introduction to the concept of state-space models, and particle filtering, which is a particular algorithm that can be used to perform inference in state-space models. While Kalman filters provide the optimal solution when the restrictions of linear Gaussian state-space models are met, they are not easily extensible to non-linear models, which is relevant when considering multi-dimensional motion. Particle filtering can be applied to arbitrary nonlinear models. State-space models can be seen as special cases of more general Bayesian hierarchical models [@Bishop:2006ui; @Murphy:2012ua]. Following the same approach as @Penny:2013iv, we first reframe the generative model used for sensory inference as a dynamic probabilistic graphical model.
  <!-- from a statistical perspective, rather an engineering perspective -->
-A state-space model is special case of a dynamic latent variable model which is suitable for modelling the time-varying behaviour of a system in terms of latent, unobservable processes and noisy observations. As an example, consider trying to estimate the velocity and position during a leftward head turn. The afferent SCC signals are considered to be proportional to the angular velocity of the head with a frequency band of approximately 0.1 – 10 Hz, which constitutes the range of natural head movements [@Grabherr:2008kk; @Carriot:2014fv]. The measurements are therefore observations of the true, unobservable angular velocity; however, they are contaminted by Gaussian noise, which is determined by characteristics of the sensory organs. Figure \@ref(fig:head-turn-data) shows a sequence of noisy measurements during a two-second turn of the head. The acceleration generating the movement is sinusoidal, given for each time step $t$ by $Asin(2\pi t/T)$, where $A$ is the amplitude of the movement, $T = 1/f$ is the duration of the movement, and $f$ is the frequency. This acceleration results in a peak velocity $\omega_{peak} = AT/\pi$ and a final angular position $\theta_{final} = AT^2/2\pi$.  Due to the inherent noisiness of the measurements, and the dynamic nature of the stimulus, the measurements need to be interpreted according to the context in which they occur.
+A state-space model is special case of a dynamic latent variable model, which is suitable for modelling the time-varying behaviour of a system in terms of latent, unobservable processes and noisy observations. As such, a state-space model can be viewed as a statistical model of the problem at hand. 
+
+For example, consider trying to estimate the velocity and position during a leftward head turn. The afferent SCC signals are considered to be proportional to the angular velocity of the head with a frequency band of approximately 0.1 – 10 Hz, which constitutes the range of natural head movements [@Grabherr:2008kk; @Carriot:2014fv]. The measurements are therefore observations of the true, unobservable angular velocity; however, they are contaminted by Gaussian noise, which is determined by characteristics of the sensory organs. Figure \@ref(fig:head-turn-data) shows a sequence of noisy measurements during a two-second turn of the head. The acceleration generating the movement is sinusoidal, given for each time step $t$ by $Asin(2\pi t/T)$, where $A$ is the amplitude of the movement, $T = 1/f$ is the duration of the movement, and $f$ is the frequency. This acceleration results in a peak velocity $\omega_{peak} = AT/\pi$ and a final angular position $\theta_{final} = AT^2/2\pi$.  Due to the inherent noisiness of the measurements, and the dynamic nature of the stimulus, the measurements need to be interpreted according to the context in which they occur.
 
 
 ```{r head-turn-data, echo=FALSE, fig.cap= "Sensory measurements obtained during a short leftward head turn. The goal is to infer the latent angular velocity and position, based on the noisy measurements. \\label{fig:head-turn}", message=FALSE, warning=FALSE, dpi=100}
@@ -183,7 +198,7 @@ where the matrix $A$ replaces the transition function $f$.
 [^sensormodel]: Note that we although both @Laurens:2006be, @Karmali:2012cv consider a realistic sensor model, for simplicity, we implement the sensor as being a noisy realisation of the velocity. Our model is not intended to be a realistic model of the SCC; rather, we focus on the probabilistic computations relevant for higher-level cognition.
 
 <!-- \autoref{fig:graphical-model-inference} -->
-\@ref(fig:graphical-model-inference) shows a representation of a state-space model as a graphical model, unrolled over multiple time steps. Starting at time 0, the state evolves according to the process model, with the measurements at each time step being generated according to the measurement model. The 2-dimensiontal latent state variable is unshaded, to indicate that it cannot be observed, wheres the observed sensory measurements are shaded. Whereas previous models were discussed in terms of the particular filtering algorithm used, the graphical notation highlights the fact that a state-space model can be viewed as a dynamic latent factor model [@Blei:2014cp]. This opens up the possibility of extending the graphical model to include higher-level variables. 
+Figure \@ref(fig:graphical-model-inference) shows a representation of a state-space model as a graphical model, unrolled over multiple time steps. Starting at time 0, the state evolves according to the process model, with the measurements at each time step being generated according to the measurement model. The 2-dimensiontal latent state variable is unshaded, to indicate that it cannot be observed, wheres the observed sensory measurements are shaded. Whereas previous models were discussed in terms of the particular filtering algorithm used, the graphical notation highlights the fact that a state-space model can be viewed as a dynamic latent factor model [@Blei:2014cp]. This opens up the possibility of extending the graphical model to include higher-level variables. 
 Given a generative model, we can apply various sampling algorithms, either in order to run a Monte Carlo simulation by sampling from the prior without incorporating any observed variables, or to perform inference, by conditioning on observed variables. After a brief discussion particle filtering, an inference algorithm often used to infer the values of the latent state variables, we will introduce our extension to the model that will allow a prediction of the consequences of active movements.
 
 <!-- ![Graphical model for inferring the 2-dimensional state $x$, consisting of angular velocity and position, based on noisy sensory measurements $y$. ](diagrams/dynamic-belief-network-inference-1.png){#fig:graphical-model-inference width=100%} -->
@@ -258,12 +273,16 @@ In order to imporove the model, the acceleration can be included in the latent s
 $$ \theta_t = \theta_{t-1} + \omega_{t-1} \Delta t + \alpha_{t-1} \frac{1}{2}\Delta t^2 $$
 
 $$ \omega_{t} = \omega_{t-1} + \alpha_{t-1} \Delta t $$
+$$ \alpha_t = \alpha_{t-1} $$
 
 The effect that this has in terms of the inference algorithm is that the proposal distribution $P(x_t | y_{1:t})$, from which samples are drawn from during the 'predict' step, is improved. By including the acceleration in the latent state, the the changes in velocity are modelled. Of course, the acceleration itself is not modelled, and the changes in acceleration (jerk) are thus treated as random, resuling in a random jerk model.
 
 > QUESTION: shall we show a model that includes acceleration in its state?
 
+# TODO
+How do we explain higher-level anticipation/expectations in such a model? This form of anticipation is not the same as the 1-step ahead predictions made during inference, but rather implement higher level prior beliefs about the direction of movement, for example.
 
+An obvious way of including this is the mechanism that allows one to predict the sensory consequences of self-initiated movement via an efference copy.
 
 <!-- ## Performance for various types of natural head movements -->
 
@@ -316,11 +335,15 @@ plot(superposition, panel_label = "", print_loglik = FALSE, predict = FALSE, ima
 
 
 # Extension allowing the prediction of active movements
-While the model described above can be used in order to track the behaviour of a dynamic system by including the acceleration as a latent state, it does not include any means of incorporating an active prediction of the kinematics. During sensory inference the measurements are incorporated, and and a posterior estimate of the latent state is obtained by updating the prior with the likelihood. The underlying kinematic model thus relies on the sensory data to inform its estimates. While this model is perfectly suitable for sensory inference, for the task of predicting the sensory consequences of self-initiated movemenents, the model is inadequate, as it does not allow including further knowledge about kinematics, which can be used to improve the proposal distribution. This knowledge is obtained by means of an efference copy of executed or planned motor commands, which is sent to a forward model. The forward model must then translate the information from the efference copy in a format that is suitable for the sensory system.
+While the model described above can be used in order to track the behaviour of a dynamic system by including the acceleration as a latent state, it does not include any means of incorporating an active prediction of the kinematics. During sensory inference the measurements are incorporated, and and a posterior estimate of the latent state is obtained by updating the prior with the likelihood. The underlying kinematic model thus relies on the sensory data to inform its estimates. While this model is perfectly suitable for sensory inference, for the task of predicting the sensory consequences of self-initiated movemenents, the model is inadequate, as it does not allow including further knowledge about kinematics, which can be used to improve the proposal distribution. This knowledge is obtained by means of an efference copy of executed or planned motor commands, which is sent to a forward model. The forward model must then translate the information from the efference copy in a format that is suitable for the sensory system. 
+
+__A further issue is that the sensory inference model cannot incorporate any top-down expectations or biases. For example, imagine seeing that someone is going to push you. You can use this information, derived from the visual modality, in order prepare yourself in order to compensate for this. However, you do not want to act too early, but rather wait until you are actually moving.__
 
 In terms of state-space models, this is implemented as a control input $u$, which extends the graphical model shown in Figure \@ref(fig:graphical-model-inference). In this model, the estimated acceleration is replaced by an known acceleration signal. This capability to predict the consequences of self-initiated movements is essential in order to distinguish re-afference from ex-afference - the system has knowledge about how it moves, and can use this to predict the sensory consequences. A further benefit of including a control input is that the model can now be used in order to run counterfactual simulations of the dynamic behaviour of the system for various types of movements.
 
-#TODO: model implementation
+We implement the control in the following manner: during an active head movement, the model generates a sequence of control signals $u_{1:T}$. For example, during a leftward head turn, using the sinusoidal acceleration profile shown in Figure \@ref(fig:head-turn-data), the acceleration is given by $Asin(2\pi t/T)$. Assuming the model has full knowledge about the onset of movement, and the type of movement (sinusoidal head turn), the model requires information about the frequency, $f = 1/T$, amplitude, $A$, and direction, which is given by the sign of the amplitude. These are  
+
+<!-- Equation XXX [refer to acceleration] -->
 
 Figure \@ref(fig:graphical-model-control) shows the resulting graphical model.
 
@@ -338,18 +361,31 @@ Experimental results to be explained: @Wertheim:2001cb report a cognitive suppre
 # An Investigation of Various Priors
 Here, we identify the various forms of predictive processing in the context of real-time sensory inference using SMC
 
+
 - Related to Filtering Algorithm
 - Higher-level Priors: The process model determines the kind of motion that is expected. Call this _hypothesis-driven_ sensory inference. It implements an expectation and is a strong prior.
+
+Show a table demonstrating the difference between:
+
+- prediction: 1-step ahead during inference
+- expectation: higher level priors
+
+
 
 The brain implements multiple priors:
 
 - ability to select type of motion
-- parameters of tht motion
+- parameters of the motion
 
 control input allows inferring the consequences of one's own actions.
 
+
+
 # Various sources of interference
-Here, we identify various sources of intereference (2-way) between thought (higher-level cognition) and lower-level sensory processing. This interference can be either due to low-level influences in sensory inference, due to priors on higher-level parameters, choice of process model (false expectations of certain type of motion). This is shown by model simulations.
+
+Interference is rather surprising; if the goal is to perform simulation without incorporating the data, then we should run a Monte Carlo simulation. Why should this interfere with sensory inference perform by a particle filter? We propose that the answer is in the shared generative model.
+
+Here, we identify various sources of interference (2-way) between thought (higher-level cognition) and lower-level sensory processing. This interference can be either due to low-level influences in sensory inference, due to priors on higher-level parameters, choice of process model (false expectations of certain type of motion). This is shown by model simulations.
 
 - Model mis-specification: If an observer uses a strong higher level prior, i.e. the wrong direction, this means that the data may be completely mis-interpreted. (call this: the effect of inappropriate priors [@Schwabe:2008ho])
 
@@ -360,9 +396,156 @@ Here, we identify various sources of intereference (2-way) between thought (high
     - bias (Starting point)
 
 ## Summary
-Interference may the result of either inappropriate priors, leading to a mis-specified filtering algorithm, or biased decision-making. We should be able to investigate which by applying cognitive process models that explain response times and choices.
+Interference may the result of either: 
+
+1) mis-specified proposal distribution: inappropriate priors, or wrong type of motion or
+2) biased decision-making
+
+We should be able to investigate which by applying cognitive process models that explain response times and choices.
 
 # Simulations
+
+## Model specifications
+
+## 3-d state space model
+
+Figure \@ref(fig:3d-statespace) show a 3-d state space model
+
+```{r 3d-statespace, echo=FALSE, fig.cap="3-d state space model.", message=FALSE, warning=FALSE}
+
+load("simulations/model-fits/m1-3d-statespace.Rda")
+
+
+df_w <- with(m1_3d_statespace$summ_smc, {
+    data_frame(t = 1:length(w$f$mean),
+               mean = w$f$mean,
+               lower = w$f$quant$`0.025`,
+               upper = w$f$quant$`0.975`)
+})
+df_w$param <- "Velocity"
+df_w$true <- m1_3d_statespace$model$data()$w_true
+df_w$observations <- m1_3d_statespace$model$data()$y
+
+df_p <- with(m1_3d_statespace$summ_smc, {
+    data_frame(t = 1:length(p$f$mean),
+               mean = p$f$mean,
+               lower = p$f$quant$`0.025`,
+               upper = p$f$quant$`0.975`)
+})
+df_p$param <- "Position"
+df_p$true <- m1_3d_statespace$model$data()$p_true
+df_p$observations <- m1_3d_statespace$model$data()$y
+
+df <- bind_rows(df_p, df_w)
+
+p1 <- df %>%
+    filter(param == "Position") %>%
+    ggplot(data = ., aes(x = t)) +
+    geom_ribbon(aes(ymin = lower, ymax = upper), fill = "grey90") +
+
+    geom_line(aes(y = true), alpha = 0.9,
+              linetype = 4, size = 1.2) +
+
+    geom_line(aes(y = mean), size = 1.6) +
+    geom_hline(yintercept = 0, linetype = 2, color = "grey70") +
+    scale_x_continuous(limits = c(1, 20),
+                       breaks = c(0, 5, 10, 15, 20),
+                       labels = c("0", "0.5", "1", "1.5", "2")) +
+    # xlab("Time (sec)") + 
+    ylab("Angular position (deg)") +
+    papaja::theme_apa(base_size = 18) +
+    theme(axis.title.x=element_blank()) +
+    theme(panel.border = element_blank(), 
+          axis.line = element_line(colour="black", size= 0.75, lineend="square"))
+   
+
+p2 <- df %>%
+    filter(param == "Velocity") %>%
+    ggplot(data = ., aes(x = t)) +
+    geom_ribbon(aes(ymin = lower, ymax = upper), fill = "grey90") +
+
+    geom_line(aes(y = true), alpha = 0.9,
+              linetype = 4, size = 1.2) +
+
+    geom_line(aes(y = mean), size = 1.6) +
+    geom_point(aes(y = observations),
+               alpha = 1, fill = "white",
+               colour = "white",
+               shape = 21, size = 6) +
+    geom_point(aes(y = observations), alpha = 1,
+               fill = "black",
+               colour = "grey40", shape = 21, size = 4) +
+    geom_hline(yintercept = 0, linetype = 2, color = "grey70") +
+    scale_x_continuous(limits = c(1, 20),
+                       breaks = c(0, 5, 10, 15, 20),
+                       labels = c("0", "0.5", "1", "1.5", "2")) +
+    xlab("Time (sec)") + 
+    ylab("Angular Velocity (deg/s)") +
+    papaja::theme_apa(base_size = 18) +
+    theme(panel.border = element_blank(), 
+          axis.line = element_line(colour="black", size = 0.75, lineend="square"))
+
+cowplot::plot_grid(p1, p2, ncol = 1) 
+                   # labels = c("Position", "Velocity"),
+                   # label_size = 12)
+
+```
+
+## Monte Carlo simulation
+Show dynamics when simulating using various proposal distributions implementing various natural head motions:
+
+- turing left
+- shaking head quickly
+- shaking head slowly (communicative gesture)
+
+
+## Expectations based on higher level priors
+In our model, there is no difference between modelling active self-motion, and an anticpation of passive self-motion due to predictable external forces. This is a testable hypothesis.
+
+## Model mis-specification
+### Inappropriate priors
+
+### Wrong type of motion model
+For example, expect shaking instead of head turn
+
+```{r active-1, cache=TRUE, fig.cap="Mis-specified proposal distribution.", echo=FALSE, message=FALSE, warning=FALSE}
+
+move <- function(A, t, Time) {
+    rnorm(1, A * sin(2 * pi * (t - 1)/Time), 0.1)
+}
+
+transfun <- function(x, t, Time, A, sigma, N, dt = 0.1, selfmotion) {
+    mu <- matrix(rep(0, 2*N), nrow = N)
+
+    if (selfmotion == "active") {
+        mu[, 1] = x[, t-1, 1] + dt * x[, t-1, 2] + dt^2/2 * move(A, t, Time)
+        mu[, 2] = x[, t-1, 2] + dt * move(A, t, Time)
+    } else if (selfmotion == "passive") {
+            mu[, 1] = x[, t-1, 1] +  dt * x[, t-1, 2]
+            mu[, 2] = x[, t-1, 2]
+        }
+        else {
+            mu[, 1] = 0
+            mu[, 2] = 0
+        }
+    # TODO: more elegant way of doing this?
+    t(apply(mu, 1, function(x) {rmvnorm(1, mean = x, sigma = sigma)}))
+}
+
+params <- list(sdx = c(0.8, 0.8) * eye(2), sdy = 2.0,
+                x_init = c(0, 0),
+                sdx_init = 0.5*eye(2),
+                A = 10, N = 1000,
+                dt = 0.1, freq = 0.5,
+                transfun = transfun)
+
+
+m1 <- run_particle_filter(motiondata = motiondata, params = params,
+                            resample_particles = TRUE, rs_thresh = 0.5,
+                            selfmotion = "active")
+
+plot(m1, panel_label = "", print_loglik = FALSE, predict = FALSE, imagine = FALSE)
+```
 
 
 # General Discussion
@@ -386,6 +569,7 @@ Imagining can be described as counterfactual inference [@Krishnan:2015wr]. Imagi
 
 - Nigmatullina
 - Wertheim
+[@Grabherr:2011ej] showed that patients with bilateral or unilateral vestibular loss show impaired ability to mentally transform images of bodies and body parts.
 
 ## Neuronal implementation
 [@Lopez:2012ek; @Lopez:2011cc]
@@ -396,7 +580,15 @@ Imagining can be described as counterfactual inference [@Krishnan:2015wr]. Imagi
 [@Gale:2016cx]
 
 ### Head direction cells
-Why dynamic simulation? Maybe in order to provide vestibular in put to head direction cells [@Taube:2007fk]
+Head direction cells are thought to integrate signals of vestibular origin to maintain a signal of cumulative rotation (reviewed in @Taube:2007fk and are found in many brain areas, including the postsubiculum, retrosplenial cortex, thalamus, lateral mammillary nucleus, dorsal tegmental nucleus, striatum and entorhinal cortex [@Cullen:2014gx]. This may be necessary in order to mentally simulate being in another position, i.e. the brain apparently needs to simulate the n-step dynamics of its motion through space. Why is this? Because vestibular connections make a major contribution to spatial orientation; information about the position in space obtained through the vestibular sensory system is computed by integrating velocity over time.
+
+- mental simulation cannot just re-use the state used in sensory inference, because the velocity is fed to the head direction cells. The brain would get confused
+- directional signal is not just a simple integration of velocity signals from the vestibular system
+- signals from motor efferecence copy or proprioceptive systems appear to be crucial for upating the preferred firing direction over time
+
+
+## Testable hypotheses
+Show a table of testable hypotheses
 
 # Summary and conclusions
 
