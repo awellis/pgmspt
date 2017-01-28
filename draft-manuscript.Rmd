@@ -49,7 +49,7 @@ output            : papaja::apa6_word
 # output            : papaja::apa6_pdf
 ---
 
-    ```{r preliminary, message = FALSE, warning = FALSE}
+```{r preliminary, message = FALSE, warning = FALSE}
 library("papaja")
 library(pander)
 library(ggplot2)
@@ -130,7 +130,7 @@ Simulatinf a movement through space is akin to planning a movement before it is 
 
 
 # Vestibular Cognition
-Two tasks thought to constitute vestibular cognition are : SPT and imagined self-motion. We show that both processes are thought to involve a simulated rotation about the body's vertical (yaw) axis. Describe both processes and show figure. Both can be interpreted as mentally simulated rotations. We refer to both as simulation: in this case we show that the simulation consists of simulating a dynamical system using a generative model. Simulation can also be thought of as a kind of internal 'replay' [@Takac:2012jc] or working memory representation
+Two tasks thought to constitute vestibular cognition are : SPT and imagined self-motion. = = = = =  Describe both processes and show figure. Both can be interpreted as mentally simulated rotations. We refer to both as simulation: in this case we show that the simulation consists of simulating a dynamical system using a generative model. Simulation can also be thought of as a kind of internal 'replay' [@Takac:2012jc] or working memory representation
 
 ![SPT and imagined self-motion involve common computations](diagrams/fig-1-common-process.pdf)
 
@@ -148,7 +148,7 @@ Is mental imagery an internal predictive process?
 
 Mental imagery is further hypothesized to be a predictive process (for future perceptual states), in which the dynamics of perceptual experience can be retrieved/calculated and reconstructed internally (Moulton and Kosslyn, 2009).
 
-> Mental imagery is oftern portrayed as being the result of top-down reconstruction of activity in perceptual circuits in the absence of physical stimulation of the sensors, and is opposed to bottom-up perception. However, in the case of the vestibular system, it becomes clear that this view is inadequate (the same is true for other modalities): the sensory that the vestibular sensors provide is noisy and ambiguous (examples), and in order to deal with these facts, the brain must use several strategies (which are well-known from control theory). It is assumed that the brain uses (at least approximatively) statistically optimal filtering algorithms. Initia research cast the type of processing in the framework of control theory (optimal observer models); however @Selva:2012gsa showed that these models are equivalent to statistically optimal models (Kalman filters), in the case of linear dynamical systems.
+Mental imagery is oftern portrayed as being the result of top-down reconstruction of activity in perceptual circuits in the absence of physical stimulation of the sensors, and is opposed to bottom-up perception. However, in the case of the vestibular system, it becomes clear that this view is inadequate (the same is true for other modalities): the sensory that the vestibular sensors provide is noisy and ambiguous (examples), and in order to deal with these facts, the brain must use several strategies (which are well-known from control theory). It is assumed that the brain uses (at least approximatively) statistically optimal filtering algorithms. Initia research cast the type of processing in the framework of control theory (optimal observer models); however @Selva:2012gsa showed that these models are equivalent to statistically optimal models (Kalman filters), in the case of linear dynamical systems.
 
 That is, given an initial point, the series of future perceptual states can be internally simulated by following the regularity (temporal and causal constraints) stored in declarative memory (general knowl- edge). The mapping between internal simulation and the per- ception of external stimulation is thought not to be necessarily isomorphic (Goldman, 1989), as only the essential intermediate states are required to have a one-to-one mapping (Fisher, 2006).
 
@@ -161,7 +161,7 @@ We investigate one specific type of head movement, a rotation of the head about 
 ## Common Computations
 
 
-~Head direction cells are thought to integrate signals of vestibular origin to maintain a signal of cumulative rotation (reviewed in @Taube:2007fk and are found in many brain areas, including the postsubiculum, retrosplenial cortex, thalamus, lateral mammillary nucleus, dorsal tegmental nucleus, striatum and entorhinal cortex [@Cullen:2014gx]. This may be necessary in order to mentally simulate being in another position, i.e. the brain apparently needs to simulate the n-step dynamics of its motion through space. Why is this? Because vestibular connections make a major contribution to spatial orientation; information about the position in space obtained through the vestibular sensory system is computed by integrating velocity over time.~
+Head direction cells are thought to integrate signals of vestibular origin to maintain a signal of cumulative rotation (reviewed in @Taube:2007fk and are found in many brain areas, including the postsubiculum, retrosplenial cortex, thalamus, lateral mammillary nucleus, dorsal tegmental nucleus, striatum and entorhinal cortex [@Cullen:2014gx]. This may be necessary in order to mentally simulate being in another position, i.e. the brain apparently needs to simulate the n-step dynamics of its motion through space. Why is this? Because vestibular connections make a major contribution to spatial orientation; information about the position in space obtained through the vestibular sensory system is computed by integrating velocity over time.
 
                                                                                                                         The computations performed for SPT require a generative model. Further, we can identify two main topics:
 

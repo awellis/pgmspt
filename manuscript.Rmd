@@ -1,9 +1,9 @@
 ---
 # title: "Modeling Cognitive Effects Vestibular Sensory Inference: From Sensory Inference To Imagined Self-Motion"
 
-title: "Vestibular Contributions to Spatial Perspective Transformations: From Sensory Inference To Imagined Self-Motion"
+# title: "Vestibular Contributions to Spatial Perspective Transformations: From Sensory Inference To Imagined Self-Motion"
 
-# title: "A Computational Perspective On Spatial Perspective Transformations: From Sensory Inference To Imagined Self-motion"
+title: "A Computational Perspective On Spatial Perspective Transformations: From Sensory Inference To Imagined Self-motion"
 # title: "Probabilistic Computations Underlying Simulated Self-Rotations"
 # title: Probabilistic Computations Underlying Vestibular Cognition
 shorttitle        : "Vestibular Contributions to SPT"
@@ -171,7 +171,7 @@ For example, consider trying to estimate the velocity and position during a left
 
 The SCC signals are considered to be proportional to the angular velocity of the head within a frequency band of approximately 0.1 – 10 Hz, which constitutes the range of natural head movements [@Grabherr:2008kk; @Carriot:2014fv]. These measurements, however, are contaminated by Gaussian noise, which is determined by characteristics of the sensory organs. Figure \@ref(fig:head-turn-data) shows a sequence of noisy measurements during a two-second leftward turn of the head. The acceleration generating the movement is sinusoidal, given for each time step $t$ by $Asin(2\pi t/T)$, where $A$ is the amplitude of the movement, $T = 1/f$ is the duration of the movement, and $f$ is the frequency. This acceleration results in a half-cycle cosine velocity profile, with a peak velocity $\omega_{peak} = AT/\pi$ and a final angular position $\theta_{final} = AT^2/2\pi$.  Particle filtering provides a means of filtering out the noise inherent in the measurements, and allows estimation of evolution of the unobservable, latent state variables.
 
-```{r head-turn-data, fig.cap="Sensory measurements obtained during a short leftward head turn. The goal is to infer the latent angular velocity and position, warning=FALSE, based on the noisy measurements.", message=FALSE, dpi=100, include=FALSE}
+```{r head-turn-data, echo=FALSE, fig.cap="Sensory measurements obtained during a short leftward head turn. The goal is to infer the latent angular velocity and position, message=FALSE, warning=FALSE, based on the noisy measurements.", message=FALSE, dpi=100}
 dt <- 0.1
 motiondata <-  generate_data(T = 2, frequency = 0.5,
                              amplitude = 20,
@@ -262,9 +262,7 @@ Figure \@ref(fig:particle-filter-explained) shows a visualization of the computa
 <!-- By recursively estimating the current state, the observations can be processed continuously; thus, the agent does not need to store the entire history of observations – only the previous belief state estimate and the current observation are needed in order to estimate the current state. At time step t, the agent observes the value of , and this observation is used to update the previous belief: -->
 
 
-<!-- ![Particle filter computations performed at every time step. The cloud of particles (grey circles) represents the current belief state. Initially, a prediction is made for each particle by sampling from the proposal distribution, which is determined by the agent’s kinematic model. This is equivalent to sampling from the prior distribution. Then, during the updating step, an observation  is obtained (shown as a black diamond). Each particle is assigned an importance weight, according to how well it explains the observation. Each particle's diameter reflects its importance weight. Subsequently, a new set of particles is formed by weighted multinomial resampling, with each particle's probability of being chosen proportional to its importance weight. The particle cloud's mean and standard deviation are shown as light grey circles and lines. This resulting cloud of particles represents the posterior distribution. This posterior subsequently forms the prior distribution for the next time step.](diagrams/figure-particle-filter-explained.pdf){#fig:particle-filter-explained width=100%} -->
-
-```{r particle-filter-explained, fig.cap="Particle filter computations performed at every time step. The cloud of particles (grey circles) represents the current belief state. Initially, a prediction is made for each particle by sampling from the proposal distribution, which is determined by the agent’s kinematic model. This is equivalent to sampling from the prior distribution. Then, during the updating step, an observation  is obtained (shown as a black diamond). Each particle is assigned an importance weight, according to how well it explains the observation. Each particle's diameter reflects its importance weight. Subsequently, a new set of particles is formed by weighted multinomial resampling, with each particle's probability of being chosen proportional to its importance weight. The particle cloud's mean and standard deviation are shown as light grey circles and lines. This resulting cloud of particles represents the posterior distribution. This posterior subsequently forms the prior distribution for the next time step.", echo=FALSE}
+```{r particle-filter-explained, echo=FALSE, fig.cap="Particle filter computations performed at every time step. The cloud of particles (grey circles) represents the current belief state. Initially, message=FALSE, warning=FALSE, a prediction is made for each particle by sampling from the proposal distribution, which is determined by the agent’s kinematic model. This is equivalent to sampling from the prior distribution. Then, during the updating step, an observation  is obtained (shown as a black diamond). Each particle is assigned an importance weight, according to how well it explains the observation. Each particle's diameter reflects its importance weight. Subsequently, a new set of particles is formed by weighted multinomial resampling, with each particle's probability of being chosen proportional to its importance weight. The particle cloud's mean and standard deviation are shown as light grey circles and lines. This resulting cloud of particles represents the posterior distribution. This posterior subsequently forms the prior distribution for the next time step.", echo=FALSE}
 knitr::include_graphics('diagrams/figure-particle-filter-explained.png')
 ```
 
@@ -464,8 +462,8 @@ plot(passive_2, panel_label = "", print_loglik = FALSE, predict = FALSE, imagine
 ```
 
 
-```{r 3d-statespace-fits, fig.cap="(a) Particle filter with a 3-d state space model for inferring velocity and position during a two-second head turn. (b) The same particle filter with increased process noise.", message=FALSE, warning=FALSE, include=FALSE}
-cowplot::plot_grid(p_3d_1, p_3d_2, ncol = 2)
+```{r 3d-statespace-fits, echo=FALSE, fig.cap="(a) Particle filter with a 3-d state space model for inferring velocity and position during a two-second head turn. (b) The same particle filter with increased process noise.", message=FALSE, warning=FALSE}
+cowplot::plot_grid(p_3d_1, p_3d_2, ncol = 2, labels = c("a", "b"))
 ```
 
 <!-- A well known shortcoming of the model described above is that the proposal distribution is equal to the prior distribution [@VanDerMerwe:2000vx] -->
