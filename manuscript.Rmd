@@ -1,40 +1,41 @@
 ---
-title: 'A Computational Perspective On Spatial Perspective Transformations: From Sensory
-  Inference To Imagined Self-motion'
-author:
-- address: Fabrikstrasse 8, 3012 Bern, Switzerland
-  corresponding: yes
-  email: andrew.ellis@psy.unibe.ch
-  name: Andrew W. Ellis
-- name: Fred W. Mast
+title: "A Computational Perspective On Spatial Perspective Transformations: From Sensory Inference To Imagined Self-motion"
+shorttitle        : "Vestibular Contributions to SPT" 
+
+author: 
+  - name          : "Andrew W. Ellis"
+    corresponding : yes    # Define only one corresponding author
+    address: Fabrikstrasse 8, 3012 Bern, Switzerland
+    email         : andrew.ellis@psy.unibe.ch
+  - name          : Fred W. Mast
+
 affiliation:
-- institution: Department of Psychology, University of Bern, Switzerland
-output:
-  '# papaja': default
-  keep_md: yes
-  papaja::apa6_word: null
-bibliography: bibliography.bib
-class: man
-fig_caption: yes
-figsintext: yes
-figurelist: yes
-footnotelist: no
-keywords: probabilistic graphical models, particle filter, embodied cognition, vestibular
-  cognition, spatial perspective taking, mental imagery, mental simulation
-lang: english
-lineno: yes
-linkcolor: blue
-number_sections: no
+    institution: Department of Psychology, University of Bern, Switzerland
+
 author_note: |
-  Andrew W. Ellis & Fred W. Mast, Department of Psychology.
-  AE and FM planned and conducted the research; AE and FM performed the simulations and wrote the manuscript.
-  Code for simulations is available at https://osf.io/u26mq.
-shorttitle: Vestibular Contributions to SPT
-tablelist: yes
+    Andrew W. Ellis & Fred W. Mast, Department of Psychology. 
+    AE and FM planned and conducted the research; AE and FM performed the simulations and wrote the manuscript. Code for simulations is available at https://osf.io/u26mq.
+
 abstract: |
-  Mental spatial transformations are considered to be an essential cognitive ability. Recent research has indicated that the vestibular network is involved in such mental spatial transformations. However, the nature of this involvement remains unclear. We propose a computational framework for the involvement of the vestibular system in cognition and discuss this in the context of perspective transformations, which require a simulated rotation of the self. We explore how the ability to anticipate the sensory consequences of self-initiated actions might underlie the ability to imagine body rotations. We approach this problem by extending previous models of vestibular sensory inference to include the ability to model the sensory consequences of self-initiated movements, and discuss how this can be further extended to allow mentally simulated rotations of the self. Our model is able to explain various source of interference between simulations of self-rotation and sensory inference.
-wordcount: X
+    Mental spatial transformations are considered to be an essential cognitive ability. Recent research has indicated that the vestibular network is involved in such mental spatial transformations. However, the nature of this involvement remains unclear. We propose a computational framework for the involvement of the vestibular system in cognition and discuss this in the context of perspective transformations, which require a simulated rotation of the self. We explore how the ability to anticipate the sensory consequences of self-initiated actions might underlie the ability to imagine body rotations. We approach this problem by extending previous models of vestibular sensory inference to include the ability to model the sensory consequences of self-initiated movements, and discuss how this can be further extended to allow mentally simulated rotations of the self. Our model is able to explain various source of interference between simulations of self-rotation and sensory inference.
+
+keywords: probabilistic graphical models, particle filter, embodied cognition, vestibular cognition, spatial perspective taking, mental imagery, mental simulation
+wordcount         : "X"
+
+bibliography      : ["bibliography.bib"]
+
+figsintext        : yes
+figurelist        : yes
+tablelist         : yes
+footnotelist      : no
+lineno            : yes
+
+lang              : "english"
+class             : "man"
+output            : papaja::apa6_pdf
 ---
+
+
 
 ```{r preliminary, message=FALSE, warning=FALSE, cache=FALSE, include=FALSE}
 library(papaja)
