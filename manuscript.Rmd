@@ -468,6 +468,12 @@ knitr::include_graphics('diagrams/dynamic-belief-network-inference-2.png')
 
 # TODO: Modelling questions
 
+Note the the vestibular senspry input may be the result of a superposition of multiple generative source; the afferent signals, measuring head velocity, may be caused by a multitude of processes (active head turn, unintentional body sway, perturbative external forcec (wind), etc.). The brain must treat these resulting head movements differently; active head turn may be goal-directed, with the aim of directing the gaze toward a target. In this case, no compensatory action os desired in order to counteract the movement. This would be counterproductive. However, in order to maintian postural stability, the brain must compensate for all movement that is not gol-directed, i.e. does not occur as a result of "planned" active motion. These components may be separated either at the level of the outcome variable (sensory signal), or at the level of the latent state variables. The latter amounts ot a latent decomposition.
+
+> Estimated velocity due to active/passive movement must be trated differently. Sensory signals due to active motion (re-afference) can be viewed as being cause by known explanatory variables, or as intervention effects.
+
+> discuss @Sanders_2015 (artificial velcoity vector)
+
 - Connecting higher cognition to sensory inference: 
     - imagery uses a similar generative model (copied from sensory model), then what is it doing? 
     - __how does mental simulation work? When we propose a mental simulation, what does this actually mean? When we propose that simulation re-uses the circuit for sensory inference, which parts are actually required? Do we need the data? Surely not. NO, we need the generative model that is used for on-line inference, but we should not perform inference with it. ON the contrary, we should avoid inference at all costs, instead running a Monte Carlo simulation with the generative model, i.e. just evolving the evolution of the dynamical system according to the transition prior (sampling from the proposal distribution).__

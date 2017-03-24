@@ -77,7 +77,7 @@ data {
   for (t in 2:t_max) {
     # p: position
     # w: velocity
-    a_true[t-1] <- A * sin(two_pi*(t-1) * freq) #+ A * sin(two_pi*(t-1) * 4 * freq)
+    a_true[t-1] <- A * sin(two_pi*(t-1) * freq) + A * sin(two_pi*(t-1) * 4 * freq)
     p_true[t] ~ dnorm(p_true[t-1] + dt * w_true[t-1] + dt^2/2 * a_true[t-1], prec_p)
     w_true[t] ~ dnorm(w_true[t-1] + dt * a_true[t-1], prec_w)
 
@@ -96,7 +96,7 @@ model {
     # p: position
     # w: velocity
     # a[t-1] <- A * sin(two_pi*(t-1)/t_max)
-    p[t] ~ dnorm(p[t-1] + dt * w[t-1] + dt^2/2 * A * a[t-1], prec_p)
+    p[t] ~ dnorm(p[t-1] + dt * w[t-1] + dt^2/2 * 1 * a[t-1], prec_p)
     w[t] ~ dnorm(w[t-1] + dt * A * a[t-1], prec_w)
     a[t] ~ dnorm(a[t-1], prec_a)
 
@@ -317,5 +317,5 @@ p4 <- df %>%
 p4
 
 p5 <- cowplot::plot_grid(p3, p4)
-
-cowplot::plot_grid(p5, p5, ncol = 1)
+p5
+# cowplot::plot_grid(p5, p5, ncol = 1)

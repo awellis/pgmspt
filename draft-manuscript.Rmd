@@ -7,10 +7,10 @@ shorttitle        : "A Computational Perspective"
 author:
     - name          : "Andrew W. Ellis"
 # affiliation   : "1"
-corresponding : yes    # Define only one corresponding author
-address       : "Fabrikstrasse 8, 3012 Bern, Switzerland"
-email         : "andrew.ellis@psy.unibe.ch"
-- name          : "Fred W. Mast"
+        corresponding : yes    # Define only one corresponding author
+        address       : "Fabrikstrasse 8, 3012 Bern, Switzerland"
+        email         : "andrew.ellis@psy.unibe.ch"
+   - name          : "Fred W. Mast"
 # affiliation   : "1"
 
 affiliation:
@@ -45,8 +45,8 @@ csl               : apa.csl
 
 lang              : "english"
 class             : "man"
-output            : papaja::apa6_word
-# output            : papaja::apa6_pdf
+# output            : papaja::apa6_word
+output            : papaja::apa6_pdf
 ---
 
 ```{r preliminary, message = FALSE, warning = FALSE}
